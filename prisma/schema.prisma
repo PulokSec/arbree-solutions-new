@@ -1,0 +1,256 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Admin / Auth ----------
+
+enum AdminRole {
+  ADMIN
+  EDITOR
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  passwordHash String
+  role         AdminRole @default(EDITOR)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// Binary image storage: admin-uploaded images live directly in Postgres
+// (no external object storage / local disk dependency). Every "image URL"
+// field across the other models is expected to hold either a legacy
+// external URL (old seed data) or a same-origin `/api/media/<id>` link
+// that streams the bytes back out with the right Content-Type.
+model MediaAsset {
+  id        String   @id @default(cuid())
+  filename  String
+  mimeType  String
+  size      Int
+  data      Bytes
+  createdAt DateTime @default(now())
+}
+
+// ---------- Site content ----------
+
+enum ServiceCategory {
+  TECH_SOLUTION
+  TEAM_AUGMENTATION
+}
+
+model Service {
+  id          String          @id @default(cuid())
+  title       String
+  slug        String          @unique
+  category    ServiceCategory
+  summary     String
+  description String
+  iconKey     String // maps to a fixed icon component on the frontend
+  coverImage  String? // e.g. the "Tech Solution" / "Team Augmentation" section photo
+  tags        ServiceTag[]
+  order       Int             @default(0)
+  published   Boolean         @default(true)
+  // SEO (all optional; falls back to site defaults / page copy when unset)
+  metaTitle        String?
+  metaDescription  String?
+  metaKeywords     String?
+  ogTitle          String?
+  ogDescription    String?
+  ogImage          String?
+  twitterTitle     String?
+  twitterDescription String?
+  twitterImage     String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model ServiceTag {
+  id        String  @id @default(cuid())
+  label     String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  serviceId String
+  order     Int     @default(0)
+}
+
+model PortfolioItem {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  countryCode  String // e.g. "BD" — drives the flag icon
+  summary      String
+  description  String
+  coverImage   String // storage path / URL
+  gallery      String[] @default([])
+  client       String? // case-study meta: client name
+  duration     String? // e.g. "8 Months"
+  teamSize     String? // e.g. "12 Person"
+  overview     String? // long-form "Project Overview" copy
+  // Free-form case-study content the admin can edit without a schema change:
+  // { stats: {label, value}[], keyFeatures: {title, description, iconKey}[],
+  //   techHighlights: {title, description, iconKey}[],
+  //   process: {title, description}[] }
+  caseStudyDetail Json?
+  tags         String[] @default([])
+  clientName   String?
+  liveUrl      String?
+  order        Int      @default(0)
+  published    Boolean  @default(true)
+  // SEO (all optional; falls back to title/summary/coverImage when unset)
+  metaTitle        String?
+  metaDescription  String?
+  metaKeywords     String?
+  ogTitle          String?
+  ogDescription    String?
+  ogImage          String?
+  twitterTitle     String?
+  twitterDescription String?
+  twitterImage     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  bio       String?
+  photo     String?
+  linkedIn  String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id           String   @id @default(cuid())
+  quote        String
+  authorName   String
+  authorTitle  String // e.g. "Project Manager, Warpspeed"
+  authorAvatar String?
+  rating       Int      @default(5)
+  order        Int      @default(0)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ClientLogo {
+  id        String   @id @default(cuid())
+  name      String
+  logo      String
+  url       String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// Editable homepage stat counters ("51+ Reviews", "100+ Projects", ...)
+model StatItem {
+  id        String   @id @default(cuid())
+  label     String
+  value     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Site-wide key-value store for editable copy that doesn't warrant its own model
+// (hero heading/subheading, About Us body, contact info, etc.)
+model SiteSetting {
+  key   String @id
+  value String
+}
+
+model ContactMessage {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  message     String
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+// Free-form, admin-editable content for pages whose sections don't map
+// cleanly onto their own tables (About, Services/Process). `page` is a
+// fixed slug ("about" | "services"); `content` follows the shape each
+// page's fetcher expects — see src/lib/page-content.ts for the schema and
+// icon-key resolution (icons are stored as string keys, e.g. "shield-check",
+// resolved to lucide-react components on render).
+model PageContent {
+  page      String   @id
+  content   Json
+  updatedAt DateTime @updatedAt
+}
+
+// ---------- Blog ----------
+
+model Blog {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  excerpt       String
+  content       String // HTML — admin-authored, rendered as-is on the blog detail page
+  featuredImage String?
+  author        String?
+  tags          String[]  @default([])
+  published     Boolean   @default(false)
+  publishedAt   DateTime?
+  order         Int       @default(0)
+  // SEO (all optional; falls back to title/excerpt/featuredImage when unset)
+  metaTitle          String?
+  metaDescription    String?
+  metaKeywords       String?
+  ogTitle            String?
+  ogDescription      String?
+  ogImage            String?
+  twitterTitle       String?
+  twitterDescription String?
+  twitterImage       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// ---------- SEO for static pages ----------
+
+// One row per static page ("home" | "about" | "services" | "portfolio" |
+// "contact"). Every field is optional and falls back to that page's
+// hardcoded default metadata (see src/lib/seo.ts) when unset, same
+// fallback pattern as PageContent.
+model SeoSettings {
+  page               String   @id
+  heading            String? // optional on-page H1 override
+  metaTitle          String?
+  metaDescription    String?
+  metaKeywords       String?
+  ogTitle            String?
+  ogDescription      String?
+  ogImage            String?
+  twitterTitle       String?
+  twitterDescription String?
+  twitterImage       String?
+  featuredImage      String? // used where a page has a hero/featured image slot
+  updatedAt          DateTime @updatedAt
+}
+
+// ---------- Analytics ----------
+
+// Singleton row (id is always "singleton") holding site-wide analytics
+// configuration, injected into the root layout when present.
+model AnalyticsSettings {
+  id                String   @id @default("singleton")
+  gaMeasurementId   String? // e.g. "G-XXXXXXXXXX" — injected as gtag.js
+  gtmContainerId    String? // e.g. "GTM-XXXXXXX" — injected as the standard GTM head+body snippets
+  customHeadSnippet String? // raw HTML/script injected at the end of <head>
+  customBodySnippet String? // raw HTML/script injected at the start of <body>
+  updatedAt         DateTime @updatedAt
+}

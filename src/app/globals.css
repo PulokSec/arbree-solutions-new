@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #ffffff;
+  --foreground: #121212;
+
+  /* Arbree Solutions design tokens (from Figma) */
+  --color-arbree-primary: #06bab5;
+  --color-arbree-primary-soft: #eafffe;
+  --color-arbree-black: #121212;
+  --color-arbree-body: #616161;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+
+  --color-primary: var(--color-arbree-primary);
+  --color-primary-soft: var(--color-arbree-primary-soft);
+  --color-ink: var(--color-arbree-black);
+  --color-body: var(--color-arbree-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Gentle floating motion for bubble icons / floating metric cards */
+@keyframes arbree-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: arbree-float 4s ease-in-out infinite;
+}
+
+/* Slow continuous rotation, used for the dashed rings behind the intro-stats graphic */
+@keyframes arbree-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: arbree-spin-slow 40s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: arbree-spin-slow 30s linear infinite reverse;
+}
+
+/* Orbit rings + icons for the intro-stats graphic: the ring rotates and carries its
+   icons with it, while each icon bubble spins the opposite way to stay upright. */
+.orbit-ring {
+  animation: arbree-spin-slow var(--orbit-duration, 40s) linear infinite var(--orbit-direction, normal);
+}
+
+.orbit-icon {
+  animation: arbree-spin-slow var(--orbit-duration, 40s) linear infinite var(--orbit-icon-direction, reverse);
+}
+
+/* Infinite horizontal marquee, used for the "Trusted by" client logo strip */
+@keyframes arbree-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: arbree-marquee 24s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Scroll entrance animation, mirrors the old site's fade-up-on-scroll sections */
+@keyframes arbree-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.reveal-visible {
+  animation: arbree-reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float,
+  .animate-spin-slow,
+  .animate-spin-slow-reverse,
+  .orbit-ring,
+  .orbit-icon,
+  .animate-marquee {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-visible {
+    animation: none;
+  }
+}
