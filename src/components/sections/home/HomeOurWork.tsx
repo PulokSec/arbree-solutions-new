@@ -92,8 +92,8 @@ export function HomeOurWork({ items = FALLBACK_PORTFOLIO }: { items?: PortfolioC
 
 function PortfolioCard({ item }: { item: PortfolioCardData }) {
   return (
-    <div className="flex w-full flex-col items-center gap-10 rounded-[20px] border border-ink/10 bg-white p-5 shadow-[34.854px_29.626px_24.17px_0px_rgba(6,186,181,0.05)] transition-transform duration-300 hover:-translate-y-2">
-      <div className="h-[255px] w-full overflow-hidden rounded-2xl bg-primary-soft">
+    <div className="flex h-full w-full flex-col items-center gap-10 rounded-[20px] border border-ink/10 bg-white p-5 shadow-[34.854px_29.626px_24.17px_0px_rgba(6,186,181,0.05)] transition-transform duration-300 hover:-translate-y-2">
+      <div className="aspect-[4/3] w-full shrink-0 overflow-hidden rounded-2xl bg-primary-soft">
         {item.coverImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={item.coverImage} alt={item.title} className="size-full object-cover" />
@@ -104,15 +104,17 @@ function PortfolioCard({ item }: { item: PortfolioCardData }) {
         )}
       </div>
 
-      <div className="flex w-full flex-col items-center gap-6">
-        <div className="flex w-full flex-col items-start gap-3">
+      <div className="flex w-full flex-1 flex-col items-center gap-6">
+        <div className="flex w-full flex-1 flex-col items-start gap-3">
           <div className="flex w-full items-start justify-between gap-3">
-            <p className="text-[28px] font-medium leading-[32px] text-ink">{item.title}</p>
-            <span className="text-2xl leading-none" aria-hidden>
+            <p className="line-clamp-1 text-[28px] font-medium leading-[32px] text-ink">
+              {item.title}
+            </p>
+            <span className="shrink-0 text-2xl leading-none" aria-hidden>
               {countryCodeToFlagEmoji(item.countryCode)}
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-[10px]">
+          <div className="flex min-h-[42px] flex-wrap items-center gap-[10px]">
             {item.tags.map((tag) => (
               <span
                 key={tag}
@@ -127,7 +129,7 @@ function PortfolioCard({ item }: { item: PortfolioCardData }) {
 
         <Link
           href={`/portfolio/${item.slug}`}
-          className="flex h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
+          className="mt-auto flex h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
         >
           View Project
           <ArrowRight className="size-6" strokeWidth={1.75} />

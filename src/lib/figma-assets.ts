@@ -11,7 +11,7 @@
  */
 
 export const navAssets = {
-  logo: "https://www.figma.com/api/mcp/asset/86b41bae-6741-41bb-b9ea-bfddd8774acf.svg",
+  logo: "/images/brand/arbree-logo.svg",
 };
 
 export const heroAssets = {

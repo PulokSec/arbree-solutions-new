@@ -24,7 +24,7 @@ const BACCO_BADGE = "https://www.figma.com/api/mcp/asset/db8f4b76-f351-419c-8a28
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-12 bg-[#f8f8f8] px-[30px] py-12 lg:gap-16 lg:px-[60px] lg:py-[50px]">
+    <footer className="flex flex-col items-center gap-12 bg-[#f8f8f8] px-[30px] py-16 lg:gap-16 lg:p-[60px]">
       <div className="mx-auto flex w-full max-w-[1320px] flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-[80px]">
         {/* Brand + contact */}
         <div className="flex w-full max-w-[520px] flex-col items-start gap-8">

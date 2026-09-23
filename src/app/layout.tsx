@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "Arbree Solutions | Scale Your Tech Team With Dedicated Experts",
   description:
     "Software Development, Resource Augmentation, QA, DevOps and Mobile Solutions that seamlessly integrate with your business and accelerate product delivery.",
+  icons: {
+    icon: "/images/brand/arbree-logo.svg",
+    shortcut: "/images/brand/arbree-logo.svg",
+    apple: "/images/brand/arbree-logo.svg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
