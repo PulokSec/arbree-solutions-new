@@ -7,6 +7,7 @@ import { CaseStudyOverview } from "@/components/sections/portfolio-details/CaseS
 import { IconFeatureGrid } from "@/components/sections/shared/IconFeatureGrid";
 import { TechStackHighlights } from "@/components/sections/portfolio-details/TechStackHighlights";
 import { CaseStudySolutionProcess } from "@/components/sections/portfolio-details/CaseStudySolutionProcess";
+import { ProjectGallery } from "@/components/sections/portfolio-details/ProjectGallery";
 import { RelatedCaseStudies } from "@/components/sections/portfolio-details/RelatedCaseStudies";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { CASE_STUDIES } from "@/lib/case-studies";
@@ -133,6 +134,7 @@ export default async function PortfolioDetailsPage({
           techHighlights: staticCaseStudy.techHighlights,
           solutionSummary: staticCaseStudy.solutionSummary,
           process: staticCaseStudy.process,
+          gallery: staticCaseStudy.gallery,
         }
       : null);
 
@@ -167,6 +169,7 @@ export default async function PortfolioDetailsPage({
               description={richDetail.techStackIntro}
               highlights={richDetail.techHighlights}
             />
+            {richDetail.gallery.length > 0 && <ProjectGallery images={richDetail.gallery} />}
             <CaseStudySolutionProcess
               solutionSummary={richDetail.solutionSummary}
               steps={richDetail.process}

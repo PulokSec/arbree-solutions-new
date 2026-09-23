@@ -30,6 +30,7 @@ export type CaseStudyData = {
   techHighlights: TechHighlight[];
   solutionSummary: string;
   process: CaseStudyProcessStep[];
+  gallery: string[];
 };
 
 export const CASE_STUDIES: Record<string, CaseStudyData> = {
@@ -134,6 +135,14 @@ export const CASE_STUDIES: Record<string, CaseStudyData> = {
         description:
           "Built with React, Django, PostgreSQL, and Docker, the platform supports enterprise-grade security, role-based access control, API integration, and cloud deployment. Its scalable architecture ensures reliable performance as the organization expands.",
       },
+    ],
+    gallery: [
+      "/images/portfolio-details/gallery-1.png",
+      "/images/portfolio-details/gallery-2.png",
+      "/images/portfolio-details/gallery-3.png",
+      "/images/portfolio-details/gallery-4.png",
+      "/images/portfolio-details/gallery-5.png",
+      "/images/portfolio-details/gallery-6.png",
     ],
   },
 };
