@@ -45,7 +45,7 @@ export function ContactFormSection() {
   return (
     <section className="bg-[#f8f8f8] px-[30px] pb-6 pt-[120px] lg:px-[60px] lg:pt-[140px]">
       <div className="mx-auto flex max-w-[1320px] flex-col overflow-hidden rounded-3xl bg-[#f8f8f8] lg:flex-row">
-        <div className="aspect-[598/500] w-full overflow-hidden lg:aspect-auto lg:w-[598px]">
+        <div className="order-last aspect-[598/500] w-full overflow-hidden lg:order-none lg:aspect-auto lg:w-[598px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={HERO_IMAGE}

@@ -27,15 +27,10 @@ export function ServiceDetailSection({
     >
       <div className="mx-auto flex max-w-[1320px] flex-col gap-14">
         <div
-          className={`flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-[60px] ${
-            reverse ? "lg:flex-row-reverse" : ""
+          className={`flex flex-col items-center gap-10 lg:items-start lg:gap-[60px] ${
+            reverse ? "lg:flex-row" : "lg:flex-row-reverse"
           }`}
         >
-          <div className="aspect-[622/456] w-full max-w-[622px] shrink-0 overflow-hidden rounded-[20px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={data.image} alt={data.title} className="size-full object-cover" />
-          </div>
-
           <div className="flex w-full max-w-[622px] flex-col items-start gap-8">
             <div className="flex flex-col items-start gap-3">
               <p className="text-[40px] font-semibold text-ink sm:text-[48px]">{data.title}</p>
@@ -52,6 +47,11 @@ export function ServiceDetailSection({
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="aspect-[622/456] w-full max-w-[622px] shrink-0 overflow-hidden rounded-[20px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={data.image} alt={data.title} className="size-full object-cover" />
           </div>
         </div>
 

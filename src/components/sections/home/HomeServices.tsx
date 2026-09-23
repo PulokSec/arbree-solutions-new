@@ -90,25 +90,10 @@ export function HomeServices({ services = FALLBACK_SERVICES }: { services?: Serv
 function ServiceRow({ service, reverse }: { service: ServiceBlockData; reverse?: boolean }) {
   return (
     <div
-      className={`flex flex-col items-center gap-8 lg:flex-row lg:gap-[76px] ${
-        reverse ? "lg:flex-row-reverse" : ""
+      className={`flex flex-col items-center gap-8 lg:gap-[76px] ${
+        reverse ? "lg:flex-row" : "lg:flex-row-reverse"
       }`}
     >
-      <div className="aspect-[622/456] w-full max-w-[622px] shrink-0 overflow-hidden rounded-[20px] bg-primary-soft">
-        {service.coverImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={service.coverImage}
-            alt={service.title}
-            className="size-full object-cover"
-          />
-        ) : (
-          <div className="flex size-full items-center justify-center text-sm text-primary/60">
-            Add a cover image via the admin dashboard
-          </div>
-        )}
-      </div>
-
       <div className="flex w-full max-w-[629px] flex-col items-start gap-[30px]">
         <div className="flex flex-col items-start gap-[14px]">
           <p className="text-[40px] font-semibold text-ink sm:text-[48px]">{service.title}</p>
@@ -125,6 +110,21 @@ function ServiceRow({ service, reverse }: { service: ServiceBlockData; reverse?:
             </span>
           ))}
         </div>
+      </div>
+
+      <div className="aspect-[622/456] w-full max-w-[622px] shrink-0 overflow-hidden rounded-[20px] bg-primary-soft">
+        {service.coverImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={service.coverImage}
+            alt={service.title}
+            className="size-full object-cover"
+          />
+        ) : (
+          <div className="flex size-full items-center justify-center text-sm text-primary/60">
+            Add a cover image via the admin dashboard
+          </div>
+        )}
       </div>
     </div>
   );
