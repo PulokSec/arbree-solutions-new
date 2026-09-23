@@ -89,7 +89,7 @@ export function PortfolioGrid({ items = FALLBACK_PORTFOLIO_GRID }: { items?: Por
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex h-full flex-col items-center gap-5 rounded-[20px] border border-ink/10 bg-white p-5 shadow-[34.854px_29.626px_24.17px_0px_rgba(6,186,181,0.05)] transition-transform duration-300 hover:-translate-y-2"
+            className="flex h-full flex-col items-center gap-5 rounded-[20px] border border-ink/10 bg-white p-5 shadow-[34.854px_29.626px_48.34px_rgba(6,186,181,0.05)] transition-transform duration-300 hover:-translate-y-2"
           >
             <div className="aspect-square w-full overflow-hidden rounded-[20px] bg-primary-soft sm:aspect-[604/345]">
               {item.coverImage ? (
