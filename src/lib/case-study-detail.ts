@@ -16,6 +16,7 @@ const caseStudyDetailSchema = z.object({
     .optional(),
   solutionSummary: z.string().optional(),
   process: z.array(z.object({ title: z.string(), description: z.string() })).optional(),
+  gallery: z.array(z.string()).optional(),
 });
 
 export type ResolvedCaseStudyDetail = {
@@ -25,6 +26,7 @@ export type ResolvedCaseStudyDetail = {
   techHighlights: TechHighlight[];
   solutionSummary: string;
   process: CaseStudyProcessStep[];
+  gallery: string[];
 };
 
 /** Safely parses the free-form `caseStudyDetail` JSON column, resolving icon
@@ -57,5 +59,6 @@ export function resolveCaseStudyDetail(raw: unknown): ResolvedCaseStudyDetail | 
     })),
     solutionSummary: d.solutionSummary ?? "",
     process: d.process ?? [],
+    gallery: d.gallery ?? [],
   };
 }
