@@ -86,61 +86,68 @@ export function HomeIntroStats({ stats = FALLBACK_STATS }: { stats?: StatItemDat
       </Reveal>
 
       {/* Animated circle graphic + stat cards */}
-      <Reveal delay={150} className="relative flex w-full max-w-[677px] items-center justify-center">
+      <Reveal
+        delay={150}
+        className="relative flex w-full max-w-[677px] flex-col items-center justify-center"
+      >
         <div className="relative aspect-square w-full max-w-[434px]">
-          {/* Dashed concentric rings, each carrying its own icons around as it rotates */}
-          {RING_ORBITS.map(({ insetClass, borderClass, durationSec, reverse, icons }, ringIndex) => (
-            <div
-              key={ringIndex}
-              className={`orbit-ring absolute ${insetClass} rounded-full border border-dashed ${borderClass}`}
-              style={
-                {
-                  "--orbit-duration": `${durationSec}s`,
-                  "--orbit-direction": reverse ? "reverse" : "normal",
-                } as React.CSSProperties
-              }
-            >
-              {icons.map(({ icon: Icon, angle }, iconIndex) => (
-                <div
-                  key={iconIndex}
-                  className="absolute inset-0"
-                  style={{ transform: `rotate(${angle}deg)` }}
-                >
+          {/* Dashed concentric rings, each carrying its own icons around as it rotates.
+              Clipped to the graphic's own box so the rotated ring wrappers never
+              register as horizontal page overflow on narrow screens. */}
+          <div className="absolute inset-[22px] overflow-hidden">
+            {RING_ORBITS.map(({ insetClass, borderClass, durationSec, reverse, icons }, ringIndex) => (
+              <div
+                key={ringIndex}
+                className={`orbit-ring absolute ${insetClass} rounded-full border border-dashed ${borderClass}`}
+                style={
+                  {
+                    "--orbit-duration": `${durationSec}s`,
+                    "--orbit-direction": reverse ? "reverse" : "normal",
+                  } as React.CSSProperties
+                }
+              >
+                {icons.map(({ icon: Icon, angle }, iconIndex) => (
                   <div
-                    className="orbit-icon absolute left-1/2 top-0 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
-                    style={
-                      {
-                        "--orbit-duration": `${durationSec}s`,
-                        "--orbit-icon-direction": reverse ? "normal" : "reverse",
-                      } as React.CSSProperties
-                    }
+                    key={iconIndex}
+                    className="absolute inset-0"
+                    style={{ transform: `rotate(${angle}deg)` }}
                   >
-                    <Icon className="size-5 text-primary" strokeWidth={1.75} />
+                    <div
+                      className="orbit-icon absolute left-1/2 top-0 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
+                      style={
+                        {
+                          "--orbit-duration": `${durationSec}s`,
+                          "--orbit-icon-direction": reverse ? "normal" : "reverse",
+                        } as React.CSSProperties
+                      }
+                    >
+                      <Icon className="size-5 text-primary" strokeWidth={1.75} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
+          </div>
 
           {/* Stat cards, positioned around the circle on large screens */}
           <StatCard
             stat={brands}
-            className="animate-float absolute -left-6 top-6 hidden sm:flex lg:-left-10"
+            className="animate-float absolute -left-6 top-6 hidden w-[136px] sm:flex lg:-left-10"
             style={{ animationDelay: "0.3s" }}
           />
           <StatCard
             stat={reviews}
-            className="animate-float absolute -right-6 top-6 hidden sm:flex lg:-right-14"
+            className="animate-float absolute -right-6 top-6 hidden w-[136px] sm:flex lg:-right-14"
             style={{ animationDelay: "1s" }}
           />
           <StatCard
             stat={techStacks}
-            className="animate-float absolute -left-6 bottom-6 hidden sm:flex lg:-left-10"
+            className="animate-float absolute -left-6 bottom-6 hidden w-[136px] sm:flex lg:-left-10"
             style={{ animationDelay: "1.7s" }}
           />
           <StatCard
             stat={projects}
-            className="animate-float absolute -right-6 bottom-6 hidden sm:flex lg:-right-14"
+            className="animate-float absolute -right-6 bottom-6 hidden w-[136px] sm:flex lg:-right-14"
             style={{ animationDelay: "2.4s" }}
           />
         </div>
@@ -171,7 +178,7 @@ function StatCard({
     <div
       ref={ref}
       style={style}
-      className={`flex w-[136px] flex-col items-center justify-center gap-2 rounded-2xl bg-white p-5 text-center shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] ${className ?? ""}`}
+      className={`flex w-full max-w-[136px] flex-col items-center justify-center gap-2 rounded-2xl bg-white p-5 text-center shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] ${className ?? ""}`}
     >
       <p className="text-[40px] font-semibold leading-none text-primary sm:text-[48px]">
         {display}

@@ -75,7 +75,7 @@ export function HomeHero({ clientLogos }: { clientLogos?: ClientLogoItem[] }) {
 
         {/* Floating capability cards */}
         <Reveal delay={150} className="relative flex justify-center lg:justify-end">
-          <div className="animate-float flex w-[282px] flex-col gap-[10px] rounded-[20px] border border-black/[0.04] bg-white p-5 shadow-[0px_0px_125px_0px_rgba(6,186,181,0.24)] [box-shadow:inset_0px_0px_10.2px_0px_rgba(6,186,181,0.13)]">
+          <div className="animate-float flex w-[282px] flex-col gap-[10px] rounded-[20px] border border-black/[0.04] bg-white p-5 shadow-[0px_0px_125px_0px_rgba(4, 124, 120, 0.24)] [box-shadow:inset_0px_0px_10.2px_0px_rgba(6,186,181,0.13)]">
             {CAPABILITIES.map((capability) => (
               <div
                 key={capability.title}

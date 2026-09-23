@@ -46,7 +46,7 @@ export function SpreadTheWord() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Your Business email"
-              className="h-[60px] w-full flex-1 rounded-[56px] border border-black/25 bg-white px-6 text-center text-base text-ink shadow-[0px_2px_4px_0px_rgba(12,0,46,0.04)] placeholder:text-ink/50 sm:text-left"
+              className="h-[60px] w-full flex-1 rounded-[56px] border border-black/25 bg-white px-6 py-4 text-left text-base text-ink shadow-[0px_2px_4px_0px_rgba(12,0,46,0.04)] placeholder:text-ink/50"
             />
             <button
               type="submit"
