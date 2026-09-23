@@ -7,6 +7,7 @@ import { HomeServices } from "@/components/sections/home/HomeServices";
 import { HomeOurWork } from "@/components/sections/home/HomeOurWork";
 import { HomeTestimonial } from "@/components/sections/home/HomeTestimonial";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
+import { SpreadTheWord } from "@/components/sections/shared/SpreadTheWord";
 import {
   getHomeStats,
   getHomeServices,
@@ -44,7 +45,8 @@ export default async function Home() {
         <HomeServices services={services} />
         <HomeOurWork items={portfolioItems} />
         <HomeTestimonial testimonials={testimonials} />
-        <CtaBanner />
+        <SpreadTheWord />
+        {/* <CtaBanner /> */}
       </main>
       <Footer />
     </>

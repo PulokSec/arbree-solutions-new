@@ -10,6 +10,7 @@ import {
 import { TeamAugmentationHighlight } from "@/components/sections/services/TeamAugmentationHighlight";
 import { OurProcessSteps } from "@/components/sections/services/OurProcessSteps";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
+import { SpreadTheWord } from "@/components/sections/shared/SpreadTheWord";
 import { getServicesPageContent } from "@/lib/page-content";
 import { buildMetadata, getSeoSettings } from "@/lib/seo";
 
@@ -137,6 +138,7 @@ export default async function ServicesPage() {
           secondaryCtaLabel="Start Your Project"
           secondaryCtaHref="/contact"
         />
+        {/* <SpreadTheWord /> */}
       </main>
       <Footer />
     </>

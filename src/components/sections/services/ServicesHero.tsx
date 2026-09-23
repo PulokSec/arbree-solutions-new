@@ -6,7 +6,7 @@ export function ServicesHero({
   subtitle?: string;
 } = {}) {
   return (
-    <section className="">
+    <section className="relative overflow-hidden px-[30px] py-16 lg:p-[60px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -24,7 +24,7 @@ export function ServicesHero({
         }}
       />
       <div className="relative mx-auto flex max-w-[941px] flex-col items-center gap-6 text-center">
-        <h1 className="text-[36px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
+        <h1 className="text-[32px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
           {title ?? "Turning Ideas Into Powerful Digital Solutions"}
         </h1>
         <p className="max-w-[820px] text-base leading-8 text-body">

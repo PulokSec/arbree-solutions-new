@@ -70,8 +70,15 @@ export function TeamAugmentationHighlight({
           {cards.map((card, i) => (
             <div
               key={card.title}
-              className="relative flex flex-col items-center gap-6 overflow-hidden border-b border-[#d5d7da] p-10 text-center last:border-b-0 sm:p-[60px] sm:odd:border-r sm:[&:nth-last-child(-n+2)]:border-b-0"
+              className="relative isolate flex flex-col items-center gap-6 overflow-hidden border-b border-[#d5d7da] p-10 text-center last:border-b-0 sm:p-[60px] sm:odd:border-r sm:[&:nth-last-child(-n+2)]:border-b-0"
             >
+              <div
+                className="pointer-events-none absolute -bottom-[104px] -left-[104px] -z-10 size-[130px] rounded-full sm:-bottom-[147px] sm:-left-[147px] sm:size-[207px]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(123.55deg, rgb(6, 186, 181) 0%, rgb(24, 57, 83) 102.56%)",
+                }}
+              />
               <div className="flex w-full items-center justify-center gap-2">
                 <p className="flex-1 text-left text-2xl font-medium text-ink sm:text-[28px]">
                   {card.title}

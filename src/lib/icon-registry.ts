@@ -23,6 +23,10 @@ import {
   Hammer,
   TestTube2,
   LifeBuoy,
+  Brain,
+  Settings,
+  ListChecks,
+  Database,
   type LucideIcon,
 } from "lucide-react";
 
@@ -51,6 +55,10 @@ export const ICON_REGISTRY: Record<string, LucideIcon> = {
   hammer: Hammer,
   "test-tube": TestTube2,
   "life-buoy": LifeBuoy,
+  brain: Brain,
+  settings: Settings,
+  "list-checks": ListChecks,
+  database: Database,
 };
 
 export function resolveIcon(key: string | undefined, fallback: LucideIcon = Code2): LucideIcon {

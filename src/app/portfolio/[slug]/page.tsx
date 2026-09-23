@@ -169,7 +169,7 @@ export default async function PortfolioDetailsPage({
               description={richDetail.techStackIntro}
               highlights={richDetail.techHighlights}
             />
-            {richDetail.gallery.length > 0 && <ProjectGallery images={richDetail.gallery} />}
+            {/* {richDetail.gallery.length > 0 && <ProjectGallery images={richDetail.gallery} />} */}
             <CaseStudySolutionProcess
               solutionSummary={richDetail.solutionSummary}
               steps={richDetail.process}

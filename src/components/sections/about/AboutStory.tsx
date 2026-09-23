@@ -31,7 +31,7 @@ export function AboutStory({
             {p}
           </p>
         ))}
-        <div className="mt-3 flex items-start gap-10 sm:gap-16">
+        <div className="mt-3 flex flex-col items-start gap-6 sm:flex-row sm:gap-10 lg:gap-16">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-start gap-1.5">
               <p className="text-3xl font-medium text-primary">{stat.value}</p>

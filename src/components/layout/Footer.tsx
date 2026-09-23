@@ -92,7 +92,7 @@ export function Footer() {
           aria-hidden
           className="absolute left-1/2 h-full w-[140%] max-w-none -translate-x-1/2 object-cover"
         />
-        <p className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap text-center text-sm font-bold text-[#047b88] sm:top-8 sm:text-base">
+        <p className="absolute left-1/2 top-4 w-[calc(100%-40px)] max-w-[420px] -translate-x-1/2 text-center text-sm font-bold text-[#047b88] sm:top-8 sm:w-auto sm:max-w-none sm:whitespace-nowrap sm:text-base">
           Working towards a cleaner, greener Bangladesh
         </p>
       </div>

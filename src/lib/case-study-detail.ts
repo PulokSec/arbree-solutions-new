@@ -12,7 +12,14 @@ const caseStudyDetailSchema = z.object({
     .optional(),
   techStackIntro: z.string().optional(),
   techHighlights: z
-    .array(z.object({ title: z.string(), description: z.string(), iconKey: z.string().optional() }))
+    .array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        iconKey: z.string().optional(),
+        category: z.string().optional(),
+      }),
+    )
     .optional(),
   solutionSummary: z.string().optional(),
   process: z.array(z.object({ title: z.string(), description: z.string() })).optional(),
@@ -56,6 +63,7 @@ export function resolveCaseStudyDetail(raw: unknown): ResolvedCaseStudyDetail | 
       title: h.title,
       description: h.description,
       icon: resolveIcon(h.iconKey),
+      category: h.category,
     })),
     solutionSummary: d.solutionSummary ?? "",
     process: d.process ?? [],

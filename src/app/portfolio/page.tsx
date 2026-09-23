@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { PortfolioHero } from "@/components/sections/portfolio/PortfolioHero";
+import { Header } from "@/components/layout/Header";
 import { PortfolioFilterTabs } from "@/components/sections/portfolio/PortfolioFilterTabs";
 import { PortfolioGrid } from "@/components/sections/portfolio/PortfolioGrid";
+import { PortfolioHero } from "@/components/sections/portfolio/PortfolioHero";
 import { WhyTrustArbree } from "@/components/sections/portfolio/WhyTrustArbree";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
 import { getPortfolioGridItems } from "@/lib/cms";
 import { buildMetadata, getSeoSettings } from "@/lib/seo";
+import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSettings("portfolio");

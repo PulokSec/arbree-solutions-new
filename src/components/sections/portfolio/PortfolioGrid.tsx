@@ -84,14 +84,14 @@ export const FALLBACK_PORTFOLIO_GRID: PortfolioGridItem[] = [
 
 export function PortfolioGrid({ items = FALLBACK_PORTFOLIO_GRID }: { items?: PortfolioGridItem[] }) {
   return (
-    <section className="bg-white px-[30px] py-10 lg:px-[60px] lg:py-5">
-      <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-8 sm:grid-cols-2">
+    <section className="bg-white px-5 py-8 sm:px-[30px] sm:py-10 lg:px-[60px] lg:py-5">
+      <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2">
         {items.map((item) => (
           <div
             key={item.id}
             className="flex h-full flex-col items-center gap-5 rounded-[20px] border border-ink/10 bg-white p-5 shadow-[34.854px_29.626px_24.17px_0px_rgba(6,186,181,0.05)] transition-transform duration-300 hover:-translate-y-2"
           >
-            <div className="aspect-[604/345] w-full overflow-hidden rounded-[20px] bg-primary-soft">
+            <div className="aspect-square w-full overflow-hidden rounded-[20px] bg-primary-soft sm:aspect-[604/345]">
               {item.coverImage ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={item.coverImage} alt={item.title} className="size-full object-cover" />
