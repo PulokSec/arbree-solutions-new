@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   description:
     "Software Development, Resource Augmentation, QA, DevOps and Mobile Solutions that seamlessly integrate with your business and accelerate product delivery.",
   icons: {
-    icon: "/images/brand/arbree-logo.svg",
-    shortcut: "/images/brand/arbree-logo.svg",
-    apple: "/images/brand/arbree-logo.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
