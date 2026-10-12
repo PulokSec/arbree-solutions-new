@@ -8,7 +8,7 @@ export function ServicesHero({
   subtitle?: string;
 } = {}) {
   return (
-    <section className="relative overflow-hidden px-[30px] pb-10 pt-[120px] sm:pt-[140px] lg:px-[60px] lg:pb-6 lg:pt-[180px]">
+    <section className="relative overflow-hidden bg-white px-[30px] pb-16 pt-[110px] sm:pt-[140px] lg:px-[60px] lg:pb-[60px] lg:pt-[180px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
