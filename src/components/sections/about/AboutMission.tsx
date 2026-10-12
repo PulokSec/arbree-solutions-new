@@ -29,23 +29,23 @@ export function AboutMission({
   rows?: MissionRow[];
 } = {}) {
   return (
-    <section className="bg-white px-[30px] py-16 lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto flex max-w-[1320px] flex-col items-start gap-8 lg:gap-0">
         <div className="flex w-full flex-col items-start justify-between gap-4 pb-8 lg:flex-row">
-          <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+          <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
             Our <span className="text-primary">Mission</span>
           </h2>
-          <p className="max-w-[644px] text-lg leading-8 text-body lg:text-right">{intro}</p>
+          <p className="max-w-[644px] text-base sm:text-lg leading-8 text-body lg:text-right">{intro}</p>
         </div>
 
         <div className="flex w-full flex-col items-start">
           {rows.map((row) => (
             <div key={row.title} className="w-full border-t border-ink/10 py-8">
               <div className="flex flex-col items-start justify-between gap-3 lg:flex-row lg:items-center">
-                <p className="w-full max-w-[300px] shrink-0 text-2xl font-medium text-ink sm:text-[28px]">
+                <p className="w-full max-w-[300px] shrink-0 text-xl sm:text-2xl font-medium text-ink sm:text-[28px]">
                   {row.title}
                 </p>
-                <p className="max-w-[644px] text-base leading-8 text-body lg:text-right">
+                <p className="max-w-[644px] text-sm leading-7 sm:text-base sm:leading-8 text-body lg:text-right">
                   {row.description}
                 </p>
               </div>

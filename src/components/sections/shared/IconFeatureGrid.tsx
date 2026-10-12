@@ -21,14 +21,14 @@ export function IconFeatureGrid({
 }) {
   return (
     <section
-      className={`px-[30px] py-16 lg:p-[60px] ${background === "muted" ? "bg-[#f8f8f8]" : "bg-white"}`}
+      className={`px-[30px] py-12 sm:py-16 lg:p-[60px] ${background === "muted" ? "bg-[#f8f8f8]" : "bg-white"}`}
     >
       <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-[60px]">
         <div className="flex flex-col items-center gap-6 text-center">
-          <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+          <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
             {eyebrowLead} <span className="text-primary">{eyebrowHighlight}</span>
           </h2>
-          <p className="max-w-[720px] text-lg leading-8 text-body">{intro}</p>
+          <p className="max-w-[720px] text-base sm:text-lg leading-8 text-body">{intro}</p>
         </div>
 
         <div className="grid w-full grid-cols-1 gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
@@ -42,7 +42,7 @@ export function IconFeatureGrid({
               </span>
               <div className="flex flex-col items-start gap-2.5 lg:gap-4">
                 <p className="text-2xl font-medium text-ink sm:text-[28px]">{item.title}</p>
-                <p className="text-base leading-6 text-body sm:leading-8">{item.description}</p>
+                <p className="text-sm leading-6 text-body sm:text-base sm:leading-8">{item.description}</p>
               </div>
             </div>
           ))}

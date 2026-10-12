@@ -15,7 +15,7 @@ const contactSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
-const HERO_IMAGE = "https://www.figma.com/api/mcp/asset/602942b3-bd1f-4f80-83b8-ad2c66e5a857.png";
+const HERO_IMAGE = "/images/contact/hero.jpg";
 
 export function ContactFormSection() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -57,11 +57,11 @@ export function ContactFormSection() {
         <div className="flex flex-1 items-center px-6 py-12 lg:px-8 lg:py-[60px]">
           <div className="flex w-full max-w-[600px] flex-col items-start gap-12">
             <div className="flex flex-col items-start gap-6">
-              <h1 className="text-[36px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
+              <h1 className="text-[26px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
                 Let&apos;s Turn Your <span className="text-primary">Ideas</span> into{" "}
                 <span className="text-primary">Reality</span>
               </h1>
-              <p className="text-lg leading-8 text-body">
+              <p className="text-base sm:text-lg leading-8 text-body">
                 Ready to start your next project? We&apos;d love to hear from you. Send us a
                 message and we&apos;ll respond as soon as possible.
               </p>
@@ -109,7 +109,7 @@ export function ContactFormSection() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="flex h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+                className="flex h-11 sm:h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
               >
                 {status === "submitting" ? "Sending..." : "Send Message"}
                 <ArrowRight className="size-6" strokeWidth={1.75} />

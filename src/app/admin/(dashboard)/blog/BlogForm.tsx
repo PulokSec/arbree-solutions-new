@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Field, TextAreaField, SubmitButton } from "@/components/admin/AdminForm";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { getInternalLinkOptions } from "@/lib/admin-links";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { SeoFieldsSection, type SeoFieldDefaults } from "@/components/admin/SeoFieldsSection";
 
@@ -16,7 +18,7 @@ export type BlogFormDefaults = SeoFieldDefaults & {
   publishedAt?: string; // yyyy-mm-dd
 };
 
-export function BlogForm({
+export async function BlogForm({
   title,
   action,
   defaults,
@@ -27,6 +29,7 @@ export function BlogForm({
   defaults?: BlogFormDefaults;
   submitLabel: string;
 }) {
+  const linkOptions = await getInternalLinkOptions();
   return (
     <div className="mx-auto max-w-[760px]">
       <Link
@@ -54,13 +57,14 @@ export function BlogForm({
           rows={2}
           defaultValue={defaults?.excerpt}
         />
-        <TextAreaField
-          label="Content (HTML — headings, paragraphs, links, images all accepted)"
+        <RichTextEditor
+          label="Content"
           name="content"
           required
-          rows={16}
-          mono
+          minHeight={320}
+          linkOptions={linkOptions}
           defaultValue={defaults?.content}
+          hint="Use the link button to point at any page, post or case study on this site."
         />
         <ImageUploadField
           label="Featured image"

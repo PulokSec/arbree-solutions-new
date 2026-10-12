@@ -25,7 +25,7 @@ function LogoItem({ client }: { client: ClientLogoItem }) {
       className="h-9 w-auto shrink-0 grayscale opacity-70 transition hover:opacity-100 hover:grayscale-0"
     />
   ) : (
-    <span className="shrink-0 whitespace-nowrap text-lg font-semibold tracking-tight text-ink/30">
+    <span className="shrink-0 whitespace-nowrap text-base sm:text-lg font-semibold tracking-tight text-ink/30">
       {client.name}
     </span>
   );

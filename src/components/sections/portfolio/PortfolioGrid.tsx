@@ -106,7 +106,7 @@ export function PortfolioGrid({ items = FALLBACK_PORTFOLIO_GRID }: { items?: Por
               <div className="flex w-full flex-col items-start gap-3">
                 <div className="flex w-full items-start justify-between gap-3">
                   <p className="text-[28px] font-medium leading-[1.15] text-ink">{item.title}</p>
-                  <span className="text-2xl leading-none" aria-hidden>
+                  <span className="text-xl sm:text-2xl leading-none" aria-hidden>
                     {countryCodeToFlagEmoji(item.countryCode)}
                   </span>
                 </div>
@@ -120,12 +120,12 @@ export function PortfolioGrid({ items = FALLBACK_PORTFOLIO_GRID }: { items?: Por
                     </span>
                   ))}
                 </div>
-                <p className="text-base leading-8 text-body">{item.summary}</p>
+                <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">{item.summary}</p>
               </div>
 
               <Link
                 href={`/portfolio/${item.slug}`}
-                className="flex h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
+                className="flex h-11 sm:h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
               >
                 View Project
                 <ArrowRight className="size-6" strokeWidth={1.75} />

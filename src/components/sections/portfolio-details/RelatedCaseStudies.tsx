@@ -12,9 +12,9 @@ function countryCodeToFlagEmoji(countryCode: string) {
 
 export function RelatedCaseStudies({ items }: { items: PortfolioGridItem[] }) {
   return (
-    <section className="bg-white px-[30px] py-16 lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto flex max-w-[1320px] flex-col items-start gap-10">
-        <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+        <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
           Related Case Studies
         </h2>
 
@@ -41,7 +41,7 @@ export function RelatedCaseStudies({ items }: { items: PortfolioGridItem[] }) {
               <div className="flex w-full flex-col items-start gap-3">
                 <div className="flex w-full items-start justify-between gap-2">
                   <p className="text-xl font-medium leading-tight text-ink">{item.title}</p>
-                  <span className="text-lg leading-none" aria-hidden>
+                  <span className="text-base sm:text-lg leading-none" aria-hidden>
                     {countryCodeToFlagEmoji(item.countryCode)}
                   </span>
                 </div>
@@ -59,7 +59,7 @@ export function RelatedCaseStudies({ items }: { items: PortfolioGridItem[] }) {
               </div>
               <Link
                 href={`/portfolio/${item.slug}`}
-                className="flex h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
+                className="flex h-11 sm:h-[52px] w-full items-center justify-center gap-1 rounded-[58px] bg-primary text-base font-medium text-white transition-opacity hover:opacity-90"
               >
                 View Project
                 <ArrowRight className="size-5" strokeWidth={1.75} />

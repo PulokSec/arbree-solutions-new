@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const CATEGORIES = ["All", "Enterprise", "Web", "Mobile", "E-commerce"];
+const CATEGORIES = ["All", "UI/UX", "Website", "Mobile Application", "Software"];
 
 export function PortfolioFilterTabs() {
   const [active, setActive] = useState("All");

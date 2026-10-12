@@ -14,8 +14,8 @@ function formatDate(date: Date | null) {
 export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
   if (posts.length === 0) {
     return (
-      <section className="bg-white px-[30px] py-16 lg:p-[60px]">
-        <div className="mx-auto max-w-[1320px] rounded-2xl border border-dashed border-ink/15 py-16 text-center text-body">
+      <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
+        <div className="mx-auto max-w-[1320px] rounded-2xl border border-dashed border-ink/15 py-12 sm:py-16 text-center text-body">
           No posts published yet — check back soon.
         </div>
       </section>
@@ -23,7 +23,7 @@ export function BlogGrid({ posts }: { posts: BlogListItem[] }) {
   }
 
   return (
-    <section className="bg-white px-[30px] py-16 lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <article

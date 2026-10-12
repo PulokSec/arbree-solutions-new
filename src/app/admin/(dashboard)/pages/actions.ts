@@ -1,20 +1,29 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { parsePageContent } from "@/lib/page-content";
 
-export async function savePageContent(page: "about" | "services", formData: FormData) {
-  const raw = formData.get("contentJson");
-  if (typeof raw !== "string" || raw.trim() === "") {
-    throw new Error("Content JSON can't be empty.");
-  }
+type PageKey = "home" | "about" | "services";
 
-  let content: object;
+const PAGE_PATH: Record<PageKey, string> = { home: "/", about: "/about", services: "/services" };
+
+export async function savePageContent(page: PageKey, contentJson: string) {
+  const session = await auth();
+  if (!session?.user) throw new Error("You need to be signed in.");
+
+  let parsed: unknown;
   try {
-    content = JSON.parse(raw);
+    parsed = JSON.parse(contentJson);
   } catch {
-    throw new Error("That's not valid JSON — check the syntax and try again.");
+    throw new Error("That's not valid content — reload the page and try again.");
   }
+
+  // Validate the known shape for the public page, but store the editor's full JSON so keys the
+  // schema doesn't model (e.g. the Services overview items) survive a round-trip.
+  parsePageContent(page, parsed);
+  const content = parsed as object;
 
   await prisma.pageContent.upsert({
     where: { page },
@@ -23,5 +32,5 @@ export async function savePageContent(page: "about" | "services", formData: Form
   });
 
   revalidatePath("/admin/pages");
-  revalidatePath(page === "about" ? "/about" : "/services");
+  revalidatePath(PAGE_PATH[page]);
 }

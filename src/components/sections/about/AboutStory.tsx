@@ -1,4 +1,6 @@
-const STORY_IMAGE = "https://www.figma.com/api/mcp/asset/f294870d-da9c-47f8-94e8-4ccdecc934e0.png";
+import { RichText } from "@/components/RichText";
+
+const STORY_IMAGE = "/images/about/story.jpg";
 
 export type AboutStat = { value: string; label: string };
 
@@ -16,20 +18,20 @@ const DEFAULT_PARAGRAPHS = [
 export function AboutStory({
   paragraphs = DEFAULT_PARAGRAPHS,
   stats = DEFAULT_STATS,
+  image,
 }: {
   paragraphs?: string[];
   stats?: AboutStat[];
+  image?: string;
 } = {}) {
   return (
-    <section className="flex flex-col items-center gap-10 bg-[#f8f8f8] px-[30px] py-16 lg:flex-row lg:justify-between lg:p-[60px] container mx-auto">
+    <section className="flex flex-col items-center gap-10 bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:flex-row lg:justify-between lg:p-[60px] container mx-auto">
       <div className="flex w-full max-w-[561px] flex-col items-start gap-3">
-        <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+        <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
           Our <span className="text-primary">Story</span>
         </h2>
         {paragraphs.map((p, i) => (
-          <p key={i} className="text-base leading-8 text-body">
-            {p}
-          </p>
+          <RichText key={i} html={p} />
         ))}
         <div className="mt-3 flex flex-col items-start gap-6 sm:flex-row sm:gap-10 lg:gap-16">
           {stats.map((stat) => (
@@ -44,7 +46,7 @@ export function AboutStory({
       <div className="aspect-[622/456] w-full max-w-[622px] overflow-hidden rounded-[20px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={STORY_IMAGE}
+          src={image || STORY_IMAGE}
           alt="The Arbree Solutions team in conversation"
           className="size-full object-cover"
         />

@@ -179,14 +179,7 @@ export default async function PortfolioDetailsPage({
 
         <RelatedCaseStudies items={related} />
 
-        <CtaBanner
-          title="Interested in Similar Project?"
-          description="Let's discuss how we can help you build a custom solution for your business needs"
-          ctaLabel="View More Projects"
-          ctaHref="/portfolio"
-          secondaryCtaLabel="Start Your Project"
-          secondaryCtaHref="/contact"
-        />
+        <CtaBanner />
       </main>
       <Footer />
     </>

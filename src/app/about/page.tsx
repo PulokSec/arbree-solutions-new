@@ -6,7 +6,6 @@ import { AboutStory } from "@/components/sections/about/AboutStory";
 import { AboutMission } from "@/components/sections/about/AboutMission";
 import { IconFeatureGrid, type IconFeatureItem } from "@/components/sections/shared/IconFeatureGrid";
 import { CtaBanner } from "@/components/sections/shared/CtaBanner";
-import { SpreadTheWord } from "@/components/sections/shared/SpreadTheWord";
 import { getAboutPageContent } from "@/lib/page-content";
 import { resolveIcon } from "@/lib/icon-registry";
 import { buildMetadata, getSeoSettings } from "@/lib/seo";
@@ -73,8 +72,16 @@ export default async function AboutPage() {
     <>
       <Header activePath="/about" />
       <main className="flex-1">
-        <AboutHero title={content?.hero?.title} subtitle={content?.hero?.subtitle} />
-        <AboutStory paragraphs={content?.story?.paragraphs} stats={content?.story?.stats} />
+        <AboutHero
+          title={content?.hero?.title}
+          subtitle={content?.hero?.subtitle}
+          image={content?.hero?.image}
+        />
+        <AboutStory
+          paragraphs={content?.story?.paragraphs}
+          stats={content?.story?.stats}
+          image={content?.story?.image}
+        />
         <AboutMission intro={content?.mission?.intro} rows={content?.mission?.rows} />
         <IconFeatureGrid
           background="muted"
@@ -96,7 +103,6 @@ export default async function AboutPage() {
           items={commitmentValues}
         />
         <CtaBanner title={content?.cta?.title} description={content?.cta?.description} />
-        {/* <SpreadTheWord /> */}
       </main>
       <Footer />
     </>

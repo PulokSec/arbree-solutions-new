@@ -1,6 +1,6 @@
 export type ProcessStepItem = { title: string; description: string; iconKey?: string };
 
-const DEFAULT_INTRO =
+export const DEFAULT_INTRO =
   "Every successful product starts with the right process. We collaborate, build, test, and continuously improve to deliver measurable business outcomes";
 
 const CHAIN_IMAGE = "/images/services/process-chain.png";
@@ -98,7 +98,7 @@ export function OurProcessSteps({
   const steps = DEFAULT_STEPS;
 
   return (
-    <section className="bg-white px-[30px] py-16 lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-14">
         <div className="flex flex-col items-center gap-4 text-center">
           <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
@@ -165,7 +165,7 @@ export function OurProcessSteps({
                   </span>
                 </div>
                 <div className="flex flex-col items-start gap-2">
-                  <p className="text-lg font-bold text-ink">{step.title}</p>
+                  <p className="text-base sm:text-lg font-bold text-ink">{step.title}</p>
                   <p className="text-sm leading-6 text-body">{step.description}</p>
                 </div>
               </div>

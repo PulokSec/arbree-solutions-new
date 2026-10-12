@@ -1,3 +1,5 @@
+import { RichText } from "@/components/RichText";
+import type { HomePageContent } from "@/lib/page-content";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
@@ -53,25 +55,33 @@ const FALLBACK_PORTFOLIO: PortfolioCardData[] = [
   },
 ];
 
-export function HomeOurWork({ items = FALLBACK_PORTFOLIO }: { items?: PortfolioCardData[] }) {
+export function HomeOurWork({
+  items = FALLBACK_PORTFOLIO,
+  content,
+}: {
+  items?: PortfolioCardData[];
+  content?: HomePageContent["ourWork"];
+}) {
   return (
-    <section id="our-work" className="bg-[#f8f8f8] px-[30px] py-16 lg:p-[60px]">
+    <section id="our-work" className="bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-[60px]">
         <Reveal className="flex w-full flex-col items-start justify-between gap-8 lg:flex-row">
-          <h2 className="text-[40px] font-semibold leading-none text-ink sm:text-[48px]">
+          <h2 className="text-[28px] font-semibold leading-none text-ink sm:text-[48px]">
             Partnership
             <br />
             <span className="text-primary">Success</span> Stories
           </h2>
           <div className="flex w-full max-w-[644px] flex-col items-start gap-8 lg:items-end">
-            <p className="text-lg leading-8 text-body lg:text-right">
-              Great solutions begin with great partnerships. Discover how our collaborative
-              approach has helped businesses overcome challenges and achieve breakthrough
-              results
-            </p>
+            <RichText
+              className="text-base sm:text-lg lg:text-right"
+              html={
+                content?.intro ??
+                "Great solutions begin with great partnerships. Discover how our collaborative approach has helped businesses overcome challenges and achieve breakthrough results"
+              }
+            />
             <Link
               href="/portfolio"
-              className="flex h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white transition-opacity hover:opacity-90"
+              className="flex h-11 sm:h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white transition-opacity hover:opacity-90"
             >
               See All
             </Link>
@@ -124,7 +134,7 @@ function PortfolioCard({ item }: { item: PortfolioCardData }) {
               </span>
             ))}
           </div>
-          <p className="line-clamp-2 text-base leading-8 text-body">{item.summary}</p>
+          <p className="line-clamp-2 text-sm leading-7 sm:text-base sm:leading-8 text-body">{item.summary}</p>
         </div>
 
         <Link

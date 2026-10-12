@@ -201,7 +201,7 @@ function SideRow({
       <span className="flex flex-col items-start gap-1.5">
         <ServiceTitle
           item={item}
-          className="text-lg font-semibold leading-8 text-ink transition-colors duration-300 group-hover:text-primary"
+          className="text-base sm:text-lg font-semibold leading-8 text-ink transition-colors duration-300 group-hover:text-primary"
         />
         <p className="text-xs leading-6 text-body">{item.description}</p>
       </span>
@@ -237,7 +237,7 @@ function StackedItem({
       <span className="flex flex-col items-center gap-1.5 text-center">
         <ServiceTitle
           item={item}
-          className="text-lg font-semibold leading-8 text-ink transition-colors duration-300 group-hover:text-primary"
+          className="text-base sm:text-lg font-semibold leading-8 text-ink transition-colors duration-300 group-hover:text-primary"
         />
         <p className="text-xs leading-6 text-body">{item.description}</p>
       </span>
@@ -305,16 +305,16 @@ export function ServicesOverview({
     resolved;
 
   return (
-    <section className="relative overflow-hidden bg-[#f8f8f8] px-[30px] py-16 lg:p-[60px]">
+    <section className="relative overflow-hidden bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <GearClusterSmall className="absolute left-60 top-60 hidden xl:block" />
       <GearClusterLarge className="absolute bottom-10 right-60 hidden xl:block" />
 
       <div className="relative mx-auto flex max-w-[1320px] flex-col items-center gap-14">
         <Reveal className="flex flex-col items-center gap-4 text-center">
-          <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+          <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
             What We <span className="text-primary">Do Best</span>
           </h2>
-          <p className="max-w-[720px] text-lg leading-8 text-body">{intro}</p>
+          <p className="max-w-[720px] text-base sm:text-lg leading-8 text-body">{intro}</p>
         </Reveal>
 
         {/* Orbit layout: reproduces Figma's exact 1150.32x846.49 composition (rings, hub, 3 columns). */}
@@ -387,7 +387,7 @@ export function ServicesOverview({
                 <div className="flex flex-col items-start gap-1">
                   <ServiceTitle
                     item={item}
-                    className="text-lg font-bold text-ink transition-colors duration-300 group-hover:text-primary"
+                    className="text-base sm:text-lg font-bold text-ink transition-colors duration-300 group-hover:text-primary"
                   />
                   <p className="text-sm leading-6 text-body">{item.description}</p>
                 </div>

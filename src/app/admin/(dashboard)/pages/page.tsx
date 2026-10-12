@@ -1,118 +1,85 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { TextAreaField, SubmitButton } from "@/components/admin/AdminForm";
+import { PageContentEditor } from "@/components/admin/PageContentEditor";
+import { getInternalLinkOptions } from "@/lib/admin-links";
+import { PAGE_SCHEMAS, type PageKey } from "@/lib/page-schemas";
+import { DEFAULT_ABOUT, DEFAULT_HOME, DEFAULT_SERVICES } from "@/lib/page-defaults";
 import { savePageContent } from "./actions";
 
-const ABOUT_TEMPLATE = `{
-  "hero": { "title": "", "subtitle": "" },
-  "story": {
-    "paragraphs": ["", ""],
-    "stats": [{ "value": "50+", "label": "Projects Completed" }]
-  },
-  "mission": {
-    "intro": "",
-    "rows": [{ "title": "", "description": "" }]
-  },
-  "keyFeatures": {
-    "intro": "",
-    "items": [{ "title": "", "description": "", "iconKey": "shield-check" }]
-  },
-  "commitment": {
-    "intro": "",
-    "items": [{ "title": "", "description": "", "iconKey": "award" }]
-  },
-  "cta": { "title": "", "description": "" }
-}`;
+const DEFAULTS: Record<PageKey, Record<string, unknown>> = {
+  home: DEFAULT_HOME,
+  about: DEFAULT_ABOUT,
+  services: DEFAULT_SERVICES,
+};
 
-const SERVICES_TEMPLATE = `{
-  "hero": { "title": "", "subtitle": "" },
-  "overview": {
-    "intro": "",
-    "items": [{ "title": "", "description": "", "iconKey": "code-2" }]
-  },
-  "serviceDetails": [
-    {
-      "title": "UI/UX Design",
-      "description": "",
-      "image": "https://...",
-      "benefits": ["User-centered design approach"],
-      "gallery": ["https://..."]
-    }
-  ],
-  "teamAugmentation": {
-    "intro": "",
-    "stats": [{ "value": "72h", "label": "Deployment Time" }],
-    "cards": [{ "title": "", "description": "" }]
-  },
-  "process": {
-    "intro": "",
-    "steps": [{ "title": "", "description": "", "iconKey": "lightbulb" }]
-  },
-  "cta": { "title": "", "description": "" }
-}`;
+type Obj = Record<string, unknown>;
+const isObj = (v: unknown): v is Obj => !!v && typeof v === "object" && !Array.isArray(v);
 
-export default async function AdminPagesContentPage() {
-  const [aboutRow, servicesRow] = await getPageContent();
+/** Stored values win; arrays are replaced wholesale, objects merged key by key. */
+function deepMerge(base: unknown, over: unknown): unknown {
+  if (isObj(base) && isObj(over)) {
+    const out: Obj = { ...base };
+    for (const [k, v] of Object.entries(over)) out[k] = k in base ? deepMerge(base[k], v) : v;
+    return out;
+  }
+  return over === undefined ? base : over;
+}
+
+export default async function AdminPagesContentPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page: pageParam } = await searchParams;
+  const page: PageKey = pageParam === "about" || pageParam === "services" ? pageParam : "home";
+  const schema = PAGE_SCHEMAS[page];
+
+  const [row, linkOptions] = await Promise.all([
+    prisma.pageContent.findUnique({ where: { page } }).catch(() => null),
+    getInternalLinkOptions(),
+  ]);
+  const initial = deepMerge(DEFAULTS[page], row?.content ?? {}) as Obj;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mx-auto flex max-w-[860px] flex-col gap-6">
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-semibold text-ink">Page Content</h1>
         <p className="text-sm text-body">
-          Freeform JSON content for the About and Services pages. Leave any key out to keep
-          that section&apos;s built-in default. Icon keys map to a fixed set of icons on the
-          frontend — see <code className="rounded bg-[#f8f8f8] px-1">src/lib/icon-registry.ts</code>.
+          Edit the text and images on each page. Use the link button in any rich-text box to link to
+          other pages on the site. Images are uploaded to the database. Fields you clear fall back to
+          the built-in copy.
         </p>
       </div>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold text-ink">About Page</h2>
-        <form
-          action={savePageContent.bind(null, "about")}
-          className="flex flex-col gap-4 rounded-2xl border border-ink/10 bg-white p-6"
-        >
-          <TextAreaField
-            label="Content JSON"
-            name="contentJson"
-            rows={16}
-            mono
-            defaultValue={
-              aboutRow ? JSON.stringify(aboutRow.content, null, 2) : ABOUT_TEMPLATE
-            }
-          />
-          <SubmitButton label="Save About Page Content" />
-        </form>
-      </section>
+      <nav className="flex gap-2">
+        {(Object.keys(PAGE_SCHEMAS) as PageKey[]).map((key) => (
+          <Link
+            key={key}
+            href={`/admin/pages?page=${key}`}
+            className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+              key === page ? "bg-primary text-white" : "bg-white text-ink hover:bg-primary-soft"
+            }`}
+          >
+            {PAGE_SCHEMAS[key].title}
+          </Link>
+        ))}
+      </nav>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold text-ink">Services Page</h2>
-        <form
-          action={savePageContent.bind(null, "services")}
-          className="flex flex-col gap-4 rounded-2xl border border-ink/10 bg-white p-6"
-        >
-          <TextAreaField
-            label="Content JSON"
-            name="contentJson"
-            rows={16}
-            mono
-            defaultValue={
-              servicesRow ? JSON.stringify(servicesRow.content, null, 2) : SERVICES_TEMPLATE
-            }
-          />
-          <SubmitButton label="Save Services Page Content" />
-        </form>
-      </section>
+      {page === "home" && (
+        <p className="rounded-xl bg-primary-soft px-4 py-3 text-sm text-ink">
+          Homepage stats, service cards, success stories, testimonials and client logos are managed
+          from their own sections in the sidebar (Services, Portfolio, Testimonials, Client Logos).
+        </p>
+      )}
+
+      <PageContentEditor
+        key={page}
+        fields={schema.fields}
+        initial={initial as never}
+        linkOptions={linkOptions}
+        viewHref={schema.path}
+        onSave={savePageContent.bind(null, page)}
+      />
     </div>
   );
-}
-
-async function getPageContent() {
-  try {
-    const [about, services] = await Promise.all([
-      prisma.pageContent.findUnique({ where: { page: "about" } }),
-      prisma.pageContent.findUnique({ where: { page: "services" } }),
-    ]);
-    return [about, services] as const;
-  } catch {
-    return [null, null] as const;
-  }
 }

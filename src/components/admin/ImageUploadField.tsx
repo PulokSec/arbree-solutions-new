@@ -26,14 +26,21 @@ export function ImageUploadField({
   defaultValue,
   required,
   hint,
+  onChange,
 }: {
   label: string;
   name: string;
   defaultValue?: string | null;
   required?: boolean;
   hint?: string;
+  /** Called with the new URL ("" when removed) — for controlled use outside a plain form. */
+  onChange?: (url: string) => void;
 }) {
-  const [url, setUrl] = useState(defaultValue ?? "");
+  const [url, setUrlState] = useState(defaultValue ?? "");
+  const setUrl = (next: string) => {
+    setUrlState(next);
+    onChange?.(next);
+  };
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -113,13 +120,19 @@ export function ImageGalleryField({
   name,
   defaultValue,
   hint,
+  onChange,
 }: {
   label: string;
   name: string;
   defaultValue?: string[];
   hint?: string;
+  onChange?: (urls: string[]) => void;
 }) {
-  const [urls, setUrls] = useState<string[]>(defaultValue ?? []);
+  const [urls, setUrlsState] = useState<string[]>(defaultValue ?? []);
+  const setUrls = (next: string[]) => {
+    setUrlsState(next);
+    onChange?.(next);
+  };
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -132,7 +145,7 @@ export function ImageGalleryField({
     setError(null);
     try {
       const url = await uploadFile(file);
-      setUrls((prev) => [...prev, url]);
+      setUrls([...urls, url]);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");
     } finally {
@@ -157,7 +170,7 @@ export function ImageGalleryField({
             />
             <button
               type="button"
-              onClick={() => setUrls((prev) => prev.filter((_, idx) => idx !== i))}
+              onClick={() => setUrls(urls.filter((_, idx) => idx !== i))}
               className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-ink text-white opacity-0 transition-opacity group-hover:opacity-100"
               aria-label="Remove image"
             >

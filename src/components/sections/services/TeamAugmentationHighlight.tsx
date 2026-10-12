@@ -1,16 +1,16 @@
 export type TeamAugStat = { value: string; label: string };
 export type TeamAugCard = { title: string; description: string };
 
-const DEFAULT_INTRO =
+export const DEFAULT_INTRO =
   "Scale your team with expert professionals when you need them most. Our team augmentation service allows you to seamlessly integrate skilled professionals into your existing team structure.";
 
-const DEFAULT_STATS: TeamAugStat[] = [
+export const DEFAULT_STATS: TeamAugStat[] = [
   { value: "72h", label: "Deployment Time" },
   { value: "1000+", label: "Vetted Professionals" },
   { value: "97%", label: "Client Retention" },
 ];
 
-const DEFAULT_CARDS: TeamAugCard[] = [
+export const DEFAULT_CARDS: TeamAugCard[] = [
   {
     title: "Curated Excellence",
     description:
@@ -43,13 +43,13 @@ export function TeamAugmentationHighlight({
   cards?: TeamAugCard[];
 } = {}) {
   return (
-    <section className="bg-white px-[30px] py-16 lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
       <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-10 lg:gap-[60px]">
         <div className="flex flex-col items-center gap-5 text-center">
-          <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">
+          <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
             Team Augmentation
           </h2>
-          <p className="max-w-[644px] text-lg leading-8 text-body">{intro}</p>
+          <p className="max-w-[644px] text-base sm:text-lg leading-8 text-body">{intro}</p>
         </div>
 
         <div className="grid w-full grid-cols-1 overflow-hidden rounded-[20px] border border-[#d5d7da] shadow-[0_10px_30px_rgba(6,186,181,0.05)] sm:grid-cols-3">
@@ -58,10 +58,10 @@ export function TeamAugmentationHighlight({
               key={stat.label}
               className="flex flex-col items-center justify-center gap-2 border-b border-[#d5d7da] px-8 py-10 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
             >
-              <p className="text-[40px] font-bold leading-tight text-primary sm:text-[64px]">
+              <p className="text-[44px] font-bold leading-tight text-primary sm:text-[64px]">
                 {stat.value}
               </p>
-              <p className="text-center text-base text-body">{stat.label}</p>
+              <p className="text-center text-sm text-body sm:text-base">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -87,7 +87,7 @@ export function TeamAugmentationHighlight({
                   {String(i + 1).padStart(2, "0")}
                 </p>
               </div>
-              <p className="text-left text-base leading-8 text-body">{card.description}</p>
+              <p className="text-left text-sm leading-7 sm:text-base sm:leading-8 text-body">{card.description}</p>
             </div>
           ))}
         </div>
