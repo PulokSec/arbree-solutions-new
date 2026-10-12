@@ -19,29 +19,31 @@ const FALLBACK_TESTIMONIALS: TestimonialData[] = [
     quote: "Arbree helped us at every step of the process setting up our new project.",
     authorName: "Sienna Hewitt",
     authorTitle: "Project Manager, Warpspeed",
-    authorAvatar: "https://www.figma.com/api/mcp/asset/efbbb981-af54-45b5-8851-aa4b583db9ab.png",
+    authorAvatar: "/images/home/testimonial-avatar.png",
     rating: 5,
   },
 ];
 
 const COLLAGE_IMAGE =
-  "https://www.figma.com/api/mcp/asset/2302752c-5c81-4242-bf29-44810f5152e3.png";
+  "/images/home/testimonial-photo.jpg";
 
 export function HomeTestimonial({
   testimonials = FALLBACK_TESTIMONIALS,
+  heading = "Testimonial",
 }: {
   testimonials?: TestimonialData[];
+  heading?: string;
 }) {
   const [index, setIndex] = useState(0);
   const current = testimonials[index] ?? testimonials[0];
   const hasMultiple = testimonials.length > 1;
 
   return (
-    <section className="px-[30px] py-16 lg:px-[60px] lg:py-[60px]">
+    <section className="px-[30px] py-12 sm:py-16 lg:px-[60px] lg:py-[60px]">
       <Reveal className="mx-auto flex max-w-[1320px] flex-col items-center gap-16 rounded-2xl bg-white p-8 lg:flex-row lg:gap-16 lg:p-[60px]">
         <div className="flex w-full max-w-[628px] flex-col items-start gap-8 lg:gap-12">
-          <h2 className="text-[40px] font-semibold text-ink sm:text-[48px]">Testimonial</h2>
-          <p className="text-2xl font-medium leading-[1.6] tracking-[-0.02em] text-ink sm:text-[36px]">
+          <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">{heading}</h2>
+          <p className="text-xl sm:text-2xl font-medium leading-[1.6] tracking-[-0.02em] text-ink sm:text-[36px]">
             &ldquo;{current.quote}&rdquo;
           </p>
           <div className="flex w-full flex-wrap items-center justify-between gap-6">
@@ -57,8 +59,8 @@ export function HomeTestimonial({
                 )}
               </div>
               <div className="flex flex-1 flex-col items-start gap-0.5">
-                <p className="text-lg font-semibold text-ink">{current.authorName}</p>
-                <p className="text-lg text-body">{current.authorTitle}</p>
+                <p className="text-base sm:text-lg font-semibold text-ink">{current.authorName}</p>
+                <p className="text-base sm:text-lg text-body">{current.authorTitle}</p>
                 <div className="flex items-center gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star

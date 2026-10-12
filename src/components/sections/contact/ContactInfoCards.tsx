@@ -9,10 +9,10 @@ export function ContactInfoCards() {
             <span className="flex items-center justify-center rounded-xl bg-primary/15 p-[7px]">
               <Mail className="size-10 text-primary" strokeWidth={1.5} />
             </span>
-            <p className="text-2xl font-medium text-ink">Email</p>
+            <p className="text-xl sm:text-2xl font-medium text-ink">Email</p>
           </div>
-          <p className="text-lg text-body">Our friendly team is here to help.</p>
-          <a href="mailto:info@arbreesolutions.com" className="text-lg text-primary">
+          <p className="text-base sm:text-lg text-body">Our friendly team is here to help.</p>
+          <a href="mailto:info@arbreesolutions.com" className="text-base sm:text-lg text-primary">
             info@arbreesolutions.com
           </a>
         </div>
@@ -25,10 +25,10 @@ export function ContactInfoCards() {
             <span className="flex items-center justify-center rounded-xl bg-primary/15 p-[7px]">
               <Phone className="size-10 text-primary" strokeWidth={1.5} />
             </span>
-            <p className="text-2xl font-medium text-ink">Phone</p>
+            <p className="text-xl sm:text-2xl font-medium text-ink">Phone</p>
           </div>
-          <p className="text-lg text-body">Sunday–Thursday from 10am to 5pm.</p>
-          <a href="tel:+8801724645825" className="text-lg text-primary">
+          <p className="text-base sm:text-lg text-body">Sunday–Thursday from 10am to 5pm.</p>
+          <a href="tel:+8801724645825" className="text-base sm:text-lg text-primary">
             +88-017-2464-5825
           </a>
         </div>

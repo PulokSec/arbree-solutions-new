@@ -40,7 +40,7 @@ export const CASE_STUDIES: Record<string, CaseStudyData> = {
       "A comprehensive customer relationship management solution designed for large enterprises with advanced analytics and automation capabilities.",
     meta: { client: "TechCorp Industries", duration: "8 Months", teamSize: "12 Person" },
     tags: ["Python", "Django", "PostgreSQL", "React", "Docker"],
-    heroImage: "https://www.figma.com/api/mcp/asset/b8d1ecb7-c7d6-4ae6-9790-f18831977dcf.png",
+    heroImage: "/images/portfolio/case-study-hero.png",
     overview:
       "The Enterprise CRM System is a cutting-edge customer relationship management solution designed specifically for large-scale enterprises. This comprehensive platform integrates seamlessly with existing business processes while providing powerful analytics and automation capabilities.\n\nOur team developed a scalable, secure, and user-friendly system that handles millions of customer interactions daily. The solution includes advanced features such as predictive analytics, automated workflow management, and real-time reporting dashboards.\n\nThe project was completed using modern technologies and best practices, ensuring optimal performance, security, and maintainability. The system has successfully improved customer satisfaction by 35% and increased sales efficiency by 42%.",
     stats: [

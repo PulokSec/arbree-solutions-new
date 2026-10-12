@@ -1,3 +1,5 @@
+import { RichText } from "@/components/RichText";
+import type { HomePageContent } from "@/lib/page-content";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
@@ -16,7 +18,7 @@ const FALLBACK_SERVICES: ServiceBlockData[] = [
     title: "Tech Solution",
     description:
       "Build scalable digital products tailored to your business from MVPs and custom software to enterprise platforms, designed for performance, growth, and long-term success.",
-    coverImage: "https://www.figma.com/api/mcp/asset/ee0e007c-1be7-4a1c-9d72-d4ce8ded1964.png",
+    coverImage: "/images/home/service-tech-solution.jpg",
     tags: [
       { id: "1", label: "Software Developer" },
       { id: "2", label: "Marketing" },
@@ -31,7 +33,7 @@ const FALLBACK_SERVICES: ServiceBlockData[] = [
     title: "Team Augmentation",
     description:
       "Scale your team with per-vetted engineers, designers, and technology specialists who seamlessly integrate into your workflow and accelerate project delivery.",
-    coverImage: "https://www.figma.com/api/mcp/asset/0efc9b9b-042b-45d5-9553-7871ec15f220.png",
+    coverImage: "/images/home/service-team-augmentation.jpg",
     tags: [
       { id: "1", label: "Project & Business Experts" },
       { id: "2", label: "DevOps Engineers" },
@@ -42,30 +44,39 @@ const FALLBACK_SERVICES: ServiceBlockData[] = [
   },
 ];
 
-export function HomeServices({ services = FALLBACK_SERVICES }: { services?: ServiceBlockData[] }) {
+export function HomeServices({
+  services = FALLBACK_SERVICES,
+  content,
+}: {
+  services?: ServiceBlockData[];
+  content?: HomePageContent["services"];
+}) {
   const [techSolution, teamAugmentation] = services;
 
   return (
-    <section id="services" className="bg-white px-[30px] py-16 lg:px-[60px] lg:py-[120px]">
+    <section id="services" className="bg-white px-[30px] py-12 sm:py-16 lg:px-[60px] lg:py-[120px]">
       <div className="mx-auto flex max-w-[1320px] flex-col gap-16 lg:gap-[120px]">
         {/* Heading + intro row */}
         <Reveal className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:gap-0">
           <div className="flex flex-col items-start gap-[22px]">
-            <p className="text-2xl font-medium text-ink">
-              Two Ways We Help You Build &amp; Scale
+            <p className="text-xl sm:text-2xl font-medium text-ink">
+              {content?.eyebrow ?? "Two Ways We Help You Build & Scale"}
             </p>
-            <p className="text-[40px] font-semibold leading-none sm:text-[48px]">
+            <p className="text-[28px] font-semibold leading-none sm:text-[48px]">
               Our <span className="text-primary">Services</span>
             </p>
           </div>
           <div className="flex max-w-[629px] flex-col items-start gap-3">
-            <p className="text-lg leading-8 text-body">
-              Whether you need a complete software solution built from scratch or skilled
-              professionals to extend your team, we&apos;ve got you covered.
-            </p>
+            <RichText
+              className="text-base sm:text-lg"
+              html={
+                content?.intro ??
+                "Whether you need a complete software solution built from scratch or skilled professionals to extend your team, we've got you covered."
+              }
+            />
             <Link
               href="/services"
-              className="flex h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white transition-opacity hover:opacity-90"
+              className="flex h-11 sm:h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white transition-opacity hover:opacity-90"
             >
               See All Services
             </Link>
@@ -111,8 +122,8 @@ function ServiceRow({ service, reverse }: { service: ServiceBlockData; reverse?:
 
       <div className="flex w-full max-w-[629px] flex-col items-start gap-[30px]">
         <div className="flex flex-col items-start gap-[14px]">
-          <p className="text-[40px] font-semibold text-ink sm:text-[48px]">{service.title}</p>
-          <p className="text-lg leading-8 text-body">{service.description}</p>
+          <p className="text-[28px] font-semibold text-ink sm:text-[48px]">{service.title}</p>
+          <p className="text-base sm:text-lg leading-8 text-body">{service.description}</p>
         </div>
         <div className="flex flex-wrap items-center gap-[10px]">
           {service.tags.map((tag) => (

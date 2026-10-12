@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <Header activePath="/blog" />
       <main className="flex-1">
-        <article className="bg-white px-[30px] pb-16 pt-[140px] lg:px-[60px] lg:pb-[60px] lg:pt-[180px]">
+        <article className="bg-white px-[30px] pb-16 pt-[110px] sm:pt-[140px] lg:px-[60px] lg:pb-[60px] lg:pt-[180px]">
           <div className="mx-auto flex max-w-[820px] flex-col items-start gap-8">
             <div className="flex flex-col items-start gap-4">
               {(formatDate(post.publishedAt) || post.author) && (

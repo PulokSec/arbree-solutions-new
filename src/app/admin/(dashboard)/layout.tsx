@@ -36,7 +36,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="flex min-h-screen bg-[#f8f8f8]">
-      <aside className="flex w-64 shrink-0 flex-col justify-between border-r border-ink/10 bg-white p-6">
+      <aside className="sticky top-0 flex h-screen w-64 shrink-0 flex-col justify-between overflow-y-auto border-r border-ink/10 bg-white p-6">
         <div className="flex flex-col gap-8">
           <p className="text-lg font-semibold text-ink">
             <span className="text-primary">arbree</span> admin

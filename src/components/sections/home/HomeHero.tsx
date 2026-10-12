@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowUpRight, Code2, Users } from "lucide-react";
 import { TrustedByClients, type ClientLogoItem } from "./TrustedByClients";
 import { Reveal } from "@/components/ui/Reveal";
+import { RichText } from "@/components/RichText";
+import type { HomePageContent } from "@/lib/page-content";
 
 type Capability = {
   title: string;
@@ -29,9 +31,16 @@ const CAPABILITIES: Capability[] = [
   },
 ];
 
-export function HomeHero({ clientLogos }: { clientLogos?: ClientLogoItem[] }) {
+export function HomeHero({
+  clientLogos,
+  content,
+}: {
+  clientLogos?: ClientLogoItem[];
+  content?: HomePageContent["hero"];
+}) {
+  const hero = content ?? {};
   return (
-    <section className="relative overflow-hidden bg-white pt-[130px] pb-8">
+    <section className="relative overflow-hidden bg-white pt-[66px] pb-8 sm:pt-[130px]">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 px-[30px] lg:grid-cols-[747px_1fr] lg:gap-0 lg:px-[60px]">
         {/* Copy + CTAs */}
         <Reveal className="flex flex-col items-start gap-[30px]">
@@ -39,36 +48,38 @@ export function HomeHero({ clientLogos }: { clientLogos?: ClientLogoItem[] }) {
             <span className="flex items-center gap-2 rounded-2xl border border-primary bg-white px-2 py-[6px]">
               <span className="size-4 rounded-2xl border border-white bg-primary" />
               <span className="text-sm font-medium text-primary">
-                Technology Solutions That Drive Growth
+                {hero.badge ?? "Technology Solutions That Drive Growth"}
               </span>
             </span>
 
             <div className="flex flex-col items-start gap-2">
-              <h1 className="text-[40px] font-bold leading-[1.3] text-ink sm:text-[52px] lg:text-[64px]">
-                Scale Your Tech Team
+              <h1 className="text-[28px] font-bold leading-[1.3] text-ink sm:text-[52px] lg:text-[64px]">
+                {hero.titleLine1 ?? "Scale Your Tech Team"}
                 <br />
-                With <span className="text-primary">Dedicated Experts</span>
+                With{" "}
+                <span className="text-primary">{hero.titleHighlight ?? "Dedicated Experts"}</span>
               </h1>
-              <p className="text-base leading-8 text-body">
-                We provide Software Development, Resource Augmentation, QA, DevOps and Mobile
-                Solutions that seamlessly integrate with your business and accelerate product
-                delivery.
-              </p>
+              <RichText
+                html={
+                  hero.subtitle ??
+                  "We provide Software Development, Resource Augmentation, QA, DevOps and Mobile Solutions that seamlessly integrate with your business and accelerate product delivery."
+                }
+              />
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-[18px]">
             <Link
-              href="/services#tech-solution"
-              className="flex h-[60px] items-center justify-center rounded-[60px] bg-primary px-[50px] text-base font-medium text-white transition-opacity hover:opacity-90"
+              href={hero.primaryHref ?? "/services#tech-solution"}
+              className="flex h-12 sm:h-[60px] items-center justify-center rounded-[60px] bg-primary px-[50px] text-base font-medium text-white transition-opacity hover:opacity-90"
             >
-              Tech Solution
+              {hero.primaryLabel ?? "Tech Solution"}
             </Link>
             <Link
-              href="/services#team-augmentation"
-              className="flex h-[60px] items-center justify-center rounded-[60px] border border-primary bg-white px-[50px] text-base font-medium text-primary transition-colors hover:bg-primary-soft"
+              href={hero.secondaryHref ?? "/services#team-augmentation"}
+              className="flex h-12 sm:h-[60px] items-center justify-center rounded-[60px] border border-primary bg-white px-[50px] text-base font-medium text-primary transition-colors hover:bg-primary-soft"
             >
-              Team Augmentation
+              {hero.secondaryLabel ?? "Team Augmentation"}
             </Link>
           </div>
         </Reveal>

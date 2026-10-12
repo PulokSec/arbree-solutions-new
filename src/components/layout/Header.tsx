@@ -81,7 +81,7 @@ export function Header({ activePath = "/" }: { activePath?: string }) {
           <Link
             href="/contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 flex h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white"
+            className="mt-2 flex h-11 sm:h-[52px] items-center justify-center gap-1 rounded-[58px] bg-primary px-6 text-base font-medium text-white"
           >
             Book a Meeting
             <ArrowSmallRightIcon />

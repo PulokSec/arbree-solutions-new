@@ -18,13 +18,13 @@ export function CaseStudyHero({
   image: string;
 }) {
   return (
-    <section className="flex flex-col items-center gap-10 bg-white px-[30px] pb-10 pt-[140px] lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:pb-[60px] lg:pt-[168px]">
+    <section className="container mx-auto flex flex-col items-center gap-10 bg-white px-[30px] pb-10 pt-[110px] sm:pt-[140px] lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:pb-[60px] lg:pt-[168px]">
       <div className="flex w-full max-w-[561px] flex-col items-start gap-6">
         <div className="flex flex-col items-start gap-3">
-          <h1 className="text-[40px] font-bold leading-[1.3] text-primary sm:text-[52px] lg:text-[64px]">
+          <h1 className="text-[28px] font-bold leading-[1.3] text-primary sm:text-[52px] lg:text-[64px]">
             {title}
           </h1>
-          <p className="text-base leading-8 text-body">{subtitle}</p>
+          <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">{subtitle}</p>
         </div>
 
         <div className="flex w-full items-center justify-between border-y border-ink/10 py-6">

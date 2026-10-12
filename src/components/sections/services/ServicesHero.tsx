@@ -1,3 +1,5 @@
+import { RichText } from "@/components/RichText";
+
 export function ServicesHero({
   title,
   subtitle,
@@ -6,7 +8,7 @@ export function ServicesHero({
   subtitle?: string;
 } = {}) {
   return (
-    <section className="">
+    <section className="bg-white px-[30px] pb-10 pt-[110px] sm:pt-[140px] lg:px-[60px] lg:pb-6 lg:pt-[180px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -24,13 +26,16 @@ export function ServicesHero({
         }}
       />
       <div className="relative mx-auto flex max-w-[941px] flex-col items-center gap-6 text-center">
-        <h1 className="text-[36px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
+        <h1 className="text-[26px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
           {title ?? "Turning Ideas Into Powerful Digital Solutions"}
         </h1>
-        <p className="max-w-[820px] text-base leading-8 text-body">
-          {subtitle ??
-            "From custom software and AI solutions to scalable web and mobile applications, we build technology that helps businesses innovate, grow, and stay ahead of the competition."}
-        </p>
+        <RichText
+          className="max-w-[820px]"
+          html={
+            subtitle ??
+            "From custom software and AI solutions to scalable web and mobile applications, we build technology that helps businesses innovate, grow, and stay ahead of the competition."
+          }
+        />
       </div>
     </section>
   );

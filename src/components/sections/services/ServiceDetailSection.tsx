@@ -1,3 +1,4 @@
+import { RichText } from "@/components/RichText";
 import { CheckCircle2 } from "lucide-react";
 import { slugify } from "@/lib/slugify";
 
@@ -23,7 +24,7 @@ export function ServiceDetailSection({
   return (
     <section
       id={slugify(data.title)}
-      className={`scroll-mt-28 px-[30px] py-16 lg:p-[60px] ${background === "muted" ? "bg-[#f8f8f8]" : "bg-white"}`}
+      className={`scroll-mt-28 px-[30px] py-12 sm:py-16 lg:p-[60px] ${background === "muted" ? "bg-[#f8f8f8]" : "bg-white"}`}
     >
       <div className="mx-auto flex max-w-[1320px] flex-col gap-14">
         <div
@@ -38,8 +39,8 @@ export function ServiceDetailSection({
 
           <div className="flex w-full max-w-[622px] flex-col items-start gap-8">
             <div className="flex flex-col items-start gap-3">
-              <p className="text-[40px] font-semibold text-ink sm:text-[48px]">{data.title}</p>
-              <p className="text-base leading-8 text-body">{data.description}</p>
+              <p className="text-[28px] font-semibold text-ink sm:text-[48px]">{data.title}</p>
+              <RichText html={data.description} />
             </div>
             <div className="flex w-full flex-col items-start gap-3">
               {(data.benefits ?? []).map((benefit) => (

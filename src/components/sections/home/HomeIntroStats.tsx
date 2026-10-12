@@ -2,6 +2,8 @@
 
 import { Boxes, Code2, PenTool, ShieldCheck, LayoutDashboard, Blocks } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+import { RichText } from "@/components/RichText";
+import type { HomePageContent } from "@/lib/page-content";
 import { useCountUp } from "@/hooks/useCountUp";
 
 export type StatItemData = {
@@ -53,7 +55,13 @@ const RING_ORBITS = [
   },
 ] as const;
 
-export function HomeIntroStats({ stats = FALLBACK_STATS }: { stats?: StatItemData[] }) {
+export function HomeIntroStats({
+  stats = FALLBACK_STATS,
+  content,
+}: {
+  stats?: StatItemData[];
+  content?: HomePageContent["intro"];
+}) {
   const [reviews, projects, brands, techStacks] = [
     stats[0] ?? FALLBACK_STATS[0],
     stats[1] ?? FALLBACK_STATS[1],
@@ -62,32 +70,40 @@ export function HomeIntroStats({ stats = FALLBACK_STATS }: { stats?: StatItemDat
   ];
 
   return (
-    <section className="flex flex-col items-center gap-16 bg-[#f8f8f8] px-[30px] py-16 lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:py-[120px] lg:pr-[144px] container mx-auto">
+    <section className="flex flex-col items-center gap-16 bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:py-[120px] lg:pr-[144px] container mx-auto">
       {/* Copy */}
       <Reveal className="flex w-full max-w-[561px] flex-col items-start gap-3">
         <div className="flex flex-col items-start gap-1">
           <div className="flex flex-col gap-2">
-            <p className="text-2xl font-medium text-ink">We are</p>
-            <p className="text-[40px] font-semibold leading-none text-primary sm:text-[48px]">
-              Arbree Solutions
+            <p className="text-xl sm:text-2xl font-medium text-ink">{content?.eyebrow ?? "We are"}</p>
+            <p className="text-[28px] font-semibold leading-none text-primary sm:text-[48px]">
+              {content?.name ?? "Arbree Solutions"}
             </p>
           </div>
-          <p className="text-base leading-8 text-body">Everyone loves simplicity, so do we.</p>
+          <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">
+            {content?.tagline ?? "Everyone loves simplicity, so do we."}
+          </p>
         </div>
-        <p className="text-base leading-8 text-body">
-          We are a <span className="font-bold">young, dynamic team</span> coming from a wide
-          variety of backgrounds. We use our digital knowledge to help you achieve your business
-          goals and grow your business.
-        </p>
-        <p className="text-base leading-8 text-body">
-          Whether you are looking to create a product from scratch or get your branding done,{" "}
-          <span className="font-bold">Arbree Solutions will find a way to help you!</span>
-        </p>
+        {content?.body ? (
+          <RichText html={content.body} />
+        ) : (
+          <>
+            <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">
+              We are a <span className="font-bold">young, dynamic team</span> coming from a wide
+              variety of backgrounds. We use our digital knowledge to help you achieve your
+              business goals and grow your business.
+            </p>
+            <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">
+              Whether you are looking to create a product from scratch or get your branding done,{" "}
+              <span className="font-bold">Arbree Solutions will find a way to help you!</span>
+            </p>
+          </>
+        )}
       </Reveal>
 
       {/* Animated circle graphic + stat cards */}
       <Reveal delay={150} className="relative flex w-full max-w-[677px] items-center justify-center">
-        <div className="relative aspect-square w-full max-w-[434px]">
+        <div className="relative aspect-square w-[88%] max-w-[434px] sm:w-full">
           {/* Dashed concentric rings, each carrying its own icons around as it rotates */}
           {RING_ORBITS.map(({ insetClass, borderClass, durationSec, reverse, icons }, ringIndex) => (
             <div
@@ -125,32 +141,26 @@ export function HomeIntroStats({ stats = FALLBACK_STATS }: { stats?: StatItemDat
           {/* Stat cards, positioned around the circle on large screens */}
           <StatCard
             stat={brands}
-            className="animate-float absolute -left-6 top-6 hidden sm:flex lg:-left-10"
+            className="animate-float absolute left-0 top-2 sm:-left-6 sm:top-6 flex lg:-left-10"
             style={{ animationDelay: "0.3s" }}
           />
           <StatCard
             stat={reviews}
-            className="animate-float absolute -right-6 top-6 hidden sm:flex lg:-right-14"
+            className="animate-float absolute right-0 top-2 sm:-right-6 sm:top-6 flex lg:-right-14"
             style={{ animationDelay: "1s" }}
           />
           <StatCard
             stat={techStacks}
-            className="animate-float absolute -left-6 bottom-6 hidden sm:flex lg:-left-10"
+            className="animate-float absolute bottom-2 left-0 sm:-left-6 sm:bottom-6 flex lg:-left-10"
             style={{ animationDelay: "1.7s" }}
           />
           <StatCard
             stat={projects}
-            className="animate-float absolute -right-6 bottom-6 hidden sm:flex lg:-right-14"
+            className="animate-float absolute bottom-2 right-0 sm:-right-6 sm:bottom-6 flex lg:-right-14"
             style={{ animationDelay: "2.4s" }}
           />
         </div>
 
-        {/* Mobile: simple 2x2 grid instead of absolute overlap */}
-        <div className="mt-6 grid w-full max-w-[420px] grid-cols-2 gap-3 sm:hidden">
-          {[brands, reviews, techStacks, projects].map((stat) => (
-            <StatCard key={stat.id} stat={stat} className="static" />
-          ))}
-        </div>
       </Reveal>
     </section>
   );
@@ -171,12 +181,12 @@ function StatCard({
     <div
       ref={ref}
       style={style}
-      className={`flex w-[136px] flex-col items-center justify-center gap-2 rounded-2xl bg-white p-5 text-center shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] ${className ?? ""}`}
+      className={`flex w-[86px] flex-col items-center justify-center gap-1 rounded-xl bg-white p-2 text-center sm:w-[136px] sm:gap-2 sm:rounded-2xl sm:p-5 shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] ${className ?? ""}`}
     >
-      <p className="text-[40px] font-semibold leading-none text-primary sm:text-[48px]">
+      <p className="text-xl font-semibold leading-none text-primary sm:text-[48px]">
         {display}
       </p>
-      <p className="text-base leading-8 text-body">{stat.label}</p>
+      <p className="text-[11px] leading-4 text-body sm:text-base sm:leading-8">{stat.label}</p>
     </div>
   );
 }

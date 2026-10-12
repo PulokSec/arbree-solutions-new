@@ -72,8 +72,16 @@ export default async function AboutPage() {
     <>
       <Header activePath="/about" />
       <main className="flex-1">
-        <AboutHero title={content?.hero?.title} subtitle={content?.hero?.subtitle} />
-        <AboutStory paragraphs={content?.story?.paragraphs} stats={content?.story?.stats} />
+        <AboutHero
+          title={content?.hero?.title}
+          subtitle={content?.hero?.subtitle}
+          image={content?.hero?.image}
+        />
+        <AboutStory
+          paragraphs={content?.story?.paragraphs}
+          stats={content?.story?.stats}
+          image={content?.story?.image}
+        />
         <AboutMission intro={content?.mission?.intro} rows={content?.mission?.rows} />
         <IconFeatureGrid
           background="muted"

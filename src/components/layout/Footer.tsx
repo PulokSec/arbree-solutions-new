@@ -16,11 +16,11 @@ const BOTTOM_LINKS = [
   { label: "Terms of Use", href: "/terms-of-use" },
 ];
 
-const FOOTER_ILLUSTRATION =
-  "https://www.figma.com/api/mcp/asset/d745a8a6-38f2-4d29-9c9d-7d19e8d9618b.png";
+const FOOTER_ILLUSTRATION = "/footer/footer-bg.png";
+const FOOTER_TAGLINE = "Working towards a cleaner, greener Bangladesh";
 const BASIS_BADGE =
-  "https://www.figma.com/api/mcp/asset/c979b5f8-2680-45c7-89cb-946fae009212.png";
-const BACCO_BADGE = "https://www.figma.com/api/mcp/asset/db8f4b76-f351-419c-8a28-fb4b6cb3dd3b.png";
+  "/images/footer/basis-badge.png";
+const BACCO_BADGE = "/images/footer/bacco-badge.png";
 
 export function Footer() {
   return (
@@ -31,7 +31,7 @@ export function Footer() {
           <div className="flex flex-col items-start gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={navAssets.logo} alt="Arbree Solutions" className="h-[52px] w-auto" />
-            <p className="text-base leading-8 text-body">
+            <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">
               We&apos;re developing an amazing E-Learning platform that helps educational
               institutes to streamline their operations.
             </p>
@@ -60,13 +60,13 @@ export function Footer() {
 
         {/* Company menu */}
         <div className="flex w-full max-w-[257px] flex-col items-start gap-6">
-          <p className="text-2xl font-medium text-ink">Company</p>
+          <p className="text-xl sm:text-2xl font-medium text-ink">Company</p>
           <div className="flex flex-col items-start gap-4">
             {COMPANY_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-base leading-8 text-body transition-colors hover:text-primary"
+                className="text-sm leading-7 sm:text-base sm:leading-8 text-body transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -90,16 +90,35 @@ export function Footer() {
           src={FOOTER_ILLUSTRATION}
           alt=""
           aria-hidden
-          className="absolute left-1/2 h-full w-[140%] max-w-none -translate-x-1/2 object-cover"
+          className="absolute left-1/2 h-full w-auto max-w-none -translate-x-1/2"
         />
-        <p className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap text-center text-sm font-bold text-[#047b88] sm:top-8 sm:text-base">
-          Working towards a cleaner, greener Bangladesh
+        <div className="footer-bird" aria-hidden />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/footer/hummingbird.gif" alt="" aria-hidden className="footer-hummingbird" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/footer/bike.png" alt="" aria-hidden className="footer-bike" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/footer/car.png" alt="" aria-hidden className="footer-car" />
+        <p
+          aria-label={FOOTER_TAGLINE}
+          className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap text-center text-sm font-bold text-[#047b88] sm:top-8 sm:text-base"
+        >
+          {FOOTER_TAGLINE.split("").map((char, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="footer-wave-char"
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              {char === " " ? "\u00a0" : char}
+            </span>
+          ))}
         </p>
       </div>
 
       {/* Bottom bar */}
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-4 text-base text-body sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-10">
+      <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-4 text-sm text-body sm:flex-row sm:justify-between sm:text-base">
+        <div className="flex items-center gap-5 whitespace-nowrap text-sm sm:gap-10 sm:text-base">
           {BOTTOM_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="transition-colors hover:text-primary">
               {link.label}
