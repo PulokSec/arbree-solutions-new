@@ -18,7 +18,8 @@ export function CaseStudyHero({
   image: string;
 }) {
   return (
-    <section className=" container mx-auto flex flex-col items-center gap-10 bg-white px-[30px] pb-10 pt-[140px] lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:pb-[60px] lg:pt-[168px]">
+    <section className="bg-white px-[30px] pb-10 pt-[140px] lg:px-[60px] lg:pb-[60px] lg:pt-[168px]">
+      <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex w-full max-w-[561px] flex-col items-start gap-6">
         <div className="flex flex-col items-start gap-3">
           <h1 className="text-[28px] font-bold leading-[1.3] text-primary sm:text-[52px] lg:text-[64px]">
@@ -59,6 +60,7 @@ export function CaseStudyHero({
       <div className="aspect-[699/456] w-full max-w-[699px] overflow-hidden rounded-[20px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt={title} className="size-full object-cover" />
+      </div>
       </div>
     </section>
   );

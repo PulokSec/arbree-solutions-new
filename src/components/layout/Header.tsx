@@ -18,7 +18,7 @@ export function Header({ activePath = "/" }: { activePath?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-4 z-50 mx-auto w-full max-w-[1320px] px-4">
+    <header className="sticky top-4 z-50 mx-auto w-full max-w-[1440px] px-[30px] lg:px-[60px]">
       <div className="flex items-center justify-between rounded-[45px] bg-white/70 p-3 shadow-[0px_16px_48px_0px_rgba(0,0,0,0.08)] backdrop-blur-[10px]">
         <Link href="/" className="flex shrink-0 items-center" onClick={() => setMobileOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
