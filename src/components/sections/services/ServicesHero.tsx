@@ -8,7 +8,7 @@ export function ServicesHero({
   subtitle?: string;
 } = {}) {
   return (
-    <section className="relative overflow-hidden bg-white px-[30px] pb-16 pt-[110px] sm:pt-[140px] lg:px-[60px] lg:pb-[60px] lg:pt-[180px]">
+    <section className="relative flex min-h-[calc(100svh-76px)] items-center justify-center overflow-hidden bg-white px-[30px] py-16 lg:px-[60px] lg:py-[60px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -25,7 +25,7 @@ export function ServicesHero({
             "repeating-linear-gradient(0deg, #121212 0 1px, transparent 1px 48px), repeating-linear-gradient(90deg, #121212 0 1px, transparent 1px 48px)",
         }}
       />
-      <div className="relative mx-auto flex max-w-[941px] flex-col items-center gap-6 text-center">
+      <div className="relative mx-auto flex w-full max-w-[941px] flex-col items-center gap-6 text-center">
         <h1 className="text-[32px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
           {title ?? "Turning Ideas Into Powerful Digital Solutions"}
         </h1>
