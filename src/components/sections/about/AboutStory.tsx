@@ -25,7 +25,8 @@ export function AboutStory({
   image?: string;
 } = {}) {
   return (
-    <section className="flex flex-col items-center gap-10 bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:flex-row lg:justify-between lg:p-[60px] container mx-auto">
+    <section className="bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:p-[60px]">
+      <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-10 lg:flex-row lg:justify-between">
       <div className="flex w-full max-w-[561px] flex-col items-start gap-3">
         <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">
           Our <span className="text-primary">Story</span>
@@ -50,6 +51,7 @@ export function AboutStory({
           alt="The Arbree Solutions team in conversation"
           className="size-full object-cover"
         />
+      </div>
       </div>
     </section>
   );

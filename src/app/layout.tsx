@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { AnalyticsHead, AnalyticsBody } from "@/components/analytics/AnalyticsScripts";
 
 const inter = Inter({
@@ -22,12 +23,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} h-full antialiased`}>
       <head>
         <AnalyticsHead />
       </head>
       <body className="min-h-full flex flex-col bg-white font-sans text-[#121212]">
         <AnalyticsBody />
+        <ScrollToTop />
         {children}
       </body>
     </html>

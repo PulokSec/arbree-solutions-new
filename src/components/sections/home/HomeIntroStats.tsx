@@ -70,7 +70,8 @@ export function HomeIntroStats({
   ];
 
   return (
-    <section className="flex flex-col items-center gap-16 bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:px-[60px] lg:py-[120px] lg:pr-[144px] container mx-auto">
+    <section className="overflow-x-clip bg-[#f8f8f8] px-[30px] py-12 sm:py-16 lg:px-[60px] lg:py-[120px]">
+      <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-16 lg:flex-row lg:items-center lg:justify-between">
       {/* Copy */}
       <Reveal className="flex w-full max-w-[561px] flex-col items-start gap-3">
         <div className="flex flex-col items-start gap-1">
@@ -108,9 +109,9 @@ export function HomeIntroStats({
       >
         <div className="relative aspect-square w-full max-w-[434px]">
           {/* Dashed concentric rings, each carrying its own icons around as it rotates.
-              Clipped to the graphic's own box so the rotated ring wrappers never
-              register as horizontal page overflow on narrow screens. */}
-          <div className="absolute inset-[22px] overflow-hidden">
+              Not clipped (the icons sit half outside the outer ring); the section itself uses
+              overflow-x-clip so rotated wrappers can't cause horizontal page scroll. */}
+          <div className="absolute inset-[22px]">
             {RING_ORBITS.map(({ insetClass, borderClass, durationSec, reverse, icons }, ringIndex) => (
               <div
                 key={ringIndex}
@@ -169,6 +170,7 @@ export function HomeIntroStats({
         </div>
 
       </Reveal>
+      </div>
     </section>
   );
 }

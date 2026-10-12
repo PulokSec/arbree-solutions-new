@@ -13,7 +13,8 @@ const TRUST_IMAGE = "/images/about/story.jpg";
 
 export function WhyTrustArbree() {
   return (
-    <section className="container mx-auto flex flex-col items-center gap-10 bg-white px-[30px] py-12 sm:py-16 lg:flex-row lg:justify-between lg:p-[60px]">
+    <section className="bg-white px-[30px] py-12 sm:py-16 lg:p-[60px]">
+      <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-10 lg:flex-row lg:justify-between">
       <div className="flex w-full max-w-[561px] flex-col items-start gap-6">
         <h2 className="text-[28px] font-semibold text-ink sm:text-[48px]">Why Trust Arbree</h2>
         <p className="text-sm leading-7 sm:text-base sm:leading-8 text-body">
@@ -39,6 +40,7 @@ export function WhyTrustArbree() {
           alt="Arbree Solutions team at work"
           className="size-full object-cover"
         />
+      </div>
       </div>
     </section>
   );
