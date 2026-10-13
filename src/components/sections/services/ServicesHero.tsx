@@ -1,4 +1,5 @@
 import { RichText } from "@/components/RichText";
+import { HeroPatternBackground } from "@/components/ui/HeroPatternBackground";
 
 export function ServicesHero({
   title,
@@ -9,22 +10,7 @@ export function ServicesHero({
 } = {}) {
   return (
     <section className="relative flex min-h-[calc(100svh-76px)] items-center justify-center overflow-hidden bg-white px-[30px] py-16 lg:px-[60px] lg:py-[60px]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at center, rgba(6,186,181,0.12) 0%, rgba(6,186,181,0) 60%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, #121212 0 1px, transparent 1px 48px), repeating-linear-gradient(90deg, #121212 0 1px, transparent 1px 48px)",
-        }}
-      />
+      <HeroPatternBackground />
       <div className="relative mx-auto flex w-full max-w-[941px] flex-col items-center gap-6 text-center">
         <h1 className="text-[32px] font-bold leading-[1.3] text-ink sm:text-[48px] lg:text-[64px]">
           {title ?? "Turning Ideas Into Powerful Digital Solutions"}

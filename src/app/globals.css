@@ -257,3 +257,24 @@ body {
   height: 0;
   pointer-events: none;
 }
+
+/* Animated gradient wash used behind full-bleed heroes. */
+.hero-gradient-bg {
+  background-color: hsl(1 36% 100%);
+  background-image:
+    radial-gradient(at 19% 65%, hsl(38 100% 61% / 0.1) 0, transparent 50%),
+    radial-gradient(at 89% 66%, hsl(6 100% 57% / 0.1) 0, transparent 50%),
+    radial-gradient(at 18% 99%, hsl(203 100% 33% / 0.1) 0, transparent 50%),
+    radial-gradient(at 2% 77%, hsl(180 100% 20% / 0.1) 0, transparent 50%);
+  background-size: 200% 200%;
+  animation: hero-gradient 13s ease infinite;
+}
+@keyframes hero-gradient {
+  0% { background-position: 0% 20%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 50% 70%; }
+  100% { background-position: 0% 20%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-bg { animation: none; }
+}
